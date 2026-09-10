@@ -1,0 +1,26 @@
+{
+  "name": "nabilla-zachra-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@nabilla/web",
+    "dev:web": "npm run dev --workspace=@nabilla/web",
+    "dev:studio": "npm run dev --workspace=@nabilla/studio",
+    "build": "npm run build:web && npm run build:studio",
+    "build:web": "npm run build --workspace=@nabilla/web",
+    "build:studio": "npm run build --workspace=@nabilla/studio",
+    "lint": "npm run lint --workspace=@nabilla/web",
+    "typecheck": "npm run typecheck --workspace=@nabilla/web && npm run typecheck --workspace=@nabilla/studio",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

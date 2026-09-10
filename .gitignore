@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Sanity
+.sanity/
+dist/
+
+# Environment files (examples remain committed)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Tooling and system files
+.DS_Store
+*.log
+.vercel/
+coverage/
+tsconfig.tsbuildinfo
