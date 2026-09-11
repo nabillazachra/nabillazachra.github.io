@@ -1,5 +1,3 @@
-import { draftMode } from "next/headers";
-
 import { fallbackHomeContent, projects } from "./fallback";
 import type { HomeContent, Project } from "./types";
 import { getSanityClient } from "../sanity/client";
@@ -9,25 +7,13 @@ import {
   projectSlugsQuery,
 } from "../sanity/queries";
 
-async function isPreviewEnabled() {
-  return (await draftMode()).isEnabled;
-}
-
 export async function getHomeContent(): Promise<HomeContent> {
-  const preview = await isPreviewEnabled();
-  const client = getSanityClient(preview);
+  const client = getSanityClient(false);
 
   if (!client) return fallbackHomeContent;
 
   try {
-    const result = await client.fetch<HomeContent>(
-      homeQuery,
-      {},
-      {
-        cache: preview ? "no-store" : "force-cache",
-        next: preview ? undefined : { revalidate: 60 },
-      },
-    );
+    const result = await client.fetch<HomeContent>(homeQuery);
 
     return {
       projects: result.projects?.length ? result.projects : projects,
@@ -50,20 +36,12 @@ export async function getHomeContent(): Promise<HomeContent> {
 }
 
 export async function getProject(slug: string): Promise<Project | null> {
-  const preview = await isPreviewEnabled();
-  const client = getSanityClient(preview);
+  const client = getSanityClient(false);
 
   if (!client) return projects.find((project) => project.slug === slug) ?? null;
 
   try {
-    return await client.fetch<Project | null>(
-      projectBySlugQuery,
-      { slug },
-      {
-        cache: preview ? "no-store" : "force-cache",
-        next: preview ? undefined : { revalidate: 60 },
-      },
-    );
+    return await client.fetch<Project | null>(projectBySlugQuery, { slug });
   } catch (error) {
     console.error(`Sanity project query failed for ${slug}.`, error);
     return projects.find((project) => project.slug === slug) ?? null;
