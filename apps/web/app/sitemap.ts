@@ -2,8 +2,10 @@ import type { MetadataRoute } from "next";
 
 import { getProjectSlugs } from "@/lib/content/get-content";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nabillazachra.github.io";
   const slugs = await getProjectSlugs();
 
   return [
