@@ -2,7 +2,7 @@ name: Deploy Editorial Portfolio to GitHub Pages
 
 on:
   push:
-    branches: ["main", "portfolio-foundation"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
