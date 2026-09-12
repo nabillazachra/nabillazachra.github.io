@@ -5,6 +5,7 @@ import type {
   EditorialBlock,
   ProjectSection,
 } from "@/lib/content/types";
+import { FerizyEvidence } from "./ferizy-evidence";
 import { RichText } from "./rich-text";
 
 const projectEvidence: Record<string, Record<string, CmsImage>> = {
@@ -176,6 +177,9 @@ export function EditorialSections({
           <div className="case-blocks">
             {section.blocks?.map((block) => {
               const evidenceImage = evidence?.[block._key];
+              const showFerizyEvidence =
+                projectSlug === "ferizy-usability-testing" &&
+                block._key === "ferizy-report-structure";
 
               return (
                 <div key={block._key}>
@@ -185,6 +189,7 @@ export function EditorialSections({
                       <EditorialImage contain image={evidenceImage} />
                     </div>
                   ) : null}
+                  {showFerizyEvidence ? <FerizyEvidence /> : null}
                 </div>
               );
             })}
