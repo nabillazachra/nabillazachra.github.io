@@ -21,3 +21,38 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - name: Install browser for visual QA
+        if: github.event_name == 'pull_request'
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+      - name: Capture portfolio screenshots
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p visual-qa/desktop visual-qa/mobile
+          python3 -m http.server 4173 --directory apps/web/out >/tmp/portfolio-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/ visual-qa/desktop/home.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/ferizy-usability-testing/ visual-qa/desktop/ferizy.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/workhub-attendance/ visual-qa/desktop/workhub.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/onstreet-parking/ visual-qa/desktop/onstreet.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/jago-last-wish/ visual-qa/desktop/jago.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/ visual-qa/mobile/home.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/ferizy-usability-testing/ visual-qa/mobile/ferizy.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/workhub-attendance/ visual-qa/mobile/workhub.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/onstreet-parking/ visual-qa/mobile/onstreet.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/jago-last-wish/ visual-qa/mobile/jago.png
+      - name: Upload visual QA artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-qa
+          path: visual-qa
+          if-no-files-found: error
