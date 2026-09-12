@@ -11,27 +11,35 @@ import type { PortableTextBlock, Project } from "@/lib/content/types";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
 
-const narrativeFields: Array<{
-  key: keyof Pick<
-    Project,
-    | "context"
-    | "problem"
-    | "users"
-    | "constraints"
-    | "research"
-    | "findings"
-    | "decisions"
-    | "tradeOffs"
-    | "testing"
-    | "outcome"
-    | "reflection"
-  >;
+type NarrativeKey = keyof Pick<
+  Project,
+  | "context"
+  | "problem"
+  | "users"
+  | "constraints"
+  | "research"
+  | "findings"
+  | "decisions"
+  | "tradeOffs"
+  | "testing"
+  | "outcome"
+  | "reflection"
+>;
+
+type NarrativeField = {
+  key: NarrativeKey;
   label: string;
-}> = [
+};
+
+const overviewFields: NarrativeField[] = [
   { key: "context", label: "Context" },
   { key: "problem", label: "Problem" },
   { key: "users", label: "People / users" },
   { key: "constraints", label: "Constraints" },
+];
+
+const fullNarrativeFields: NarrativeField[] = [
+  ...overviewFields,
   { key: "research", label: "Research" },
   { key: "findings", label: "Findings" },
   { key: "decisions", label: "Decisions" },
@@ -63,6 +71,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
+
+  const hasEditorialStory = Boolean(
+    project.sections?.some((section) => section.blocks?.length),
+  );
+  const narrativeFields = hasEditorialStory
+    ? overviewFields
+    : fullNarrativeFields;
 
   return (
     <main className="case-main" id="main-content">
@@ -108,6 +123,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         <div className="case-narrative shell">
+          {hasEditorialStory ? (
+            <header className="case-overview-heading">
+              <p className="mono-label">Case overview</p>
+              <p>
+                The essentials first. The evidence, decisions, and validation
+                follow below.
+              </p>
+            </header>
+          ) : null}
+
           {narrativeFields.map(({ key, label }) => {
             const value = project[key] as PortableTextBlock[] | undefined;
             if (!value?.length) return null;
@@ -124,7 +149,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {project.externalLinks?.length ? (
           <aside className="project-links shell">
-            <p className="mono-label">Related links</p>
+            <p className="mono-label">Source material / related links</p>
             {project.externalLinks.map((link) => (
               <ExternalLink
                 className="text-link"
