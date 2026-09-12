@@ -1,0 +1,154 @@
+.wrap {
+  margin-top: clamp(3rem, 7vw, 7rem);
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 5vw, 5rem);
+}
+
+.header h3 {
+  max-width: 42rem;
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4.8vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.finding {
+  min-height: 24rem;
+  padding: 1.5rem 1.5rem 2rem;
+  border-right: 1px solid var(--ink);
+}
+
+.finding:last-child {
+  border-right: 0;
+}
+
+.stat {
+  display: block;
+  margin: clamp(2rem, 5vw, 5rem) 0 1rem;
+  color: var(--signal);
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+}
+
+.finding h4 {
+  max-width: 17rem;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.finding ul {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.finding li + li {
+  margin-top: 0.85rem;
+}
+
+.recommendations {
+  margin-top: clamp(4rem, 8vw, 8rem);
+}
+
+.recommendationsHeader {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.recommendationsHeader p:last-child {
+  max-width: 34rem;
+  color: var(--muted);
+}
+
+.recommendationList {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.recommendationList li {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.index {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.recommendationList p {
+  max-width: 52rem;
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.source {
+  margin-top: 1.25rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.source a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 700px) {
+  .header,
+  .recommendationsHeader,
+  .recommendationList li {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .finding {
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .finding:last-child {
+    border-bottom: 0;
+  }
+
+  .stat {
+    margin-top: 2rem;
+  }
+}
