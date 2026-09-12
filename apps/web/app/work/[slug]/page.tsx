@@ -8,6 +8,7 @@ import { ProjectArtwork } from "@/components/project-artwork";
 import { RichText } from "@/components/rich-text";
 import { getProject, getProjectSlugs } from "@/lib/content/get-content";
 import type { CmsImage, PortableTextBlock, Project } from "@/lib/content/types";
+import styles from "./case-overview.module.css";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
 
@@ -128,7 +129,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <div className="case-narrative shell">
           {hasEditorialStory ? (
-            <header className="case-overview-heading">
+            <header className={styles.header}>
               <p className="mono-label">Case overview</p>
               <p>
                 The essentials first. The evidence, decisions, and validation
