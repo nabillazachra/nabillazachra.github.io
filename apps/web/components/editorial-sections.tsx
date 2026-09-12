@@ -6,6 +6,7 @@ import type {
   ProjectSection,
 } from "@/lib/content/types";
 import { FerizyEvidence } from "./ferizy-evidence";
+import { JagoProcessMap, OnStreetSystemMap } from "./project-diagrams";
 import { RichText } from "./rich-text";
 
 const projectEvidence: Record<string, Record<string, CmsImage>> = {
@@ -180,6 +181,12 @@ export function EditorialSections({
               const showFerizyEvidence =
                 projectSlug === "ferizy-usability-testing" &&
                 block._key === "ferizy-report-structure";
+              const showOnStreetMap =
+                projectSlug === "onstreet-parking" &&
+                block._key === "parking-dual-user";
+              const showJagoProcess =
+                projectSlug === "jago-last-wish" &&
+                block._key === "jago-process";
 
               return (
                 <div key={block._key}>
@@ -190,6 +197,8 @@ export function EditorialSections({
                     </div>
                   ) : null}
                   {showFerizyEvidence ? <FerizyEvidence /> : null}
+                  {showOnStreetMap ? <OnStreetSystemMap /> : null}
+                  {showJagoProcess ? <JagoProcessMap /> : null}
                 </div>
               );
             })}
