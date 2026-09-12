@@ -67,12 +67,13 @@ jobs:
           }
 
           async function capture(browser, name, route, viewport, folder) {
-            const page = await browser.newPage({ viewportSize: viewport });
+            const context = await browser.newContext({ viewport });
+            const page = await context.newPage();
             await page.emulateMedia({ reducedMotion: 'reduce' });
             await page.goto(`http://127.0.0.1:4173${route}`, { waitUntil: 'networkidle' });
             await warmLazyImages(page);
             await page.screenshot({ path: `visual-qa/${folder}/${name}.png`, fullPage: true });
-            await page.close();
+            await context.close();
           }
 
           (async () => {
