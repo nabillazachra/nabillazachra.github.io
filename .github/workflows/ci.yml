@@ -44,13 +44,13 @@ jobs:
           npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/workhub-attendance/ visual-qa/desktop/workhub.png
           npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/onstreet-parking/ visual-qa/desktop/onstreet.png
           npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="1440,1200" --full-page http://127.0.0.1:4173/work/jago-last-wish/ visual-qa/desktop/jago.png
-          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/ visual-qa/mobile/home.png
-          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/ferizy-usability-testing/ visual-qa/mobile/ferizy.png
-          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/workhub-attendance/ visual-qa/mobile/workhub.png
-          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/onstreet-parking/ visual-qa/mobile/onstreet.png
-          npx --yes playwright@1.55.0 screenshot --browser chromium --device="iPhone 15" --full-page http://127.0.0.1:4173/work/jago-last-wish/ visual-qa/mobile/jago.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="393,852" --full-page http://127.0.0.1:4173/ visual-qa/mobile/home.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="393,852" --full-page http://127.0.0.1:4173/work/ferizy-usability-testing/ visual-qa/mobile/ferizy.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="393,852" --full-page http://127.0.0.1:4173/work/workhub-attendance/ visual-qa/mobile/workhub.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="393,852" --full-page http://127.0.0.1:4173/work/onstreet-parking/ visual-qa/mobile/onstreet.png
+          npx --yes playwright@1.55.0 screenshot --browser chromium --viewport-size="393,852" --full-page http://127.0.0.1:4173/work/jago-last-wish/ visual-qa/mobile/jago.png
       - name: Upload visual QA artifact
-        if: github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-visual-qa
