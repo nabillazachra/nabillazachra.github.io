@@ -32,9 +32,9 @@ const projectEvidence: Record<string, Record<string, CmsImage>> = {
       caption: "One of the documented task flows used to translate product requirements into interaction steps.",
     },
     "workhub-delivery-panel": {
-      url: "/images/workhub/final-ui.jpg",
-      alt: "WorkHub final mobile interface screens",
-      caption: "Selected final-interface screens from the WorkHub attendance-management concept.",
+      url: "/images/workhub/hero.jpg",
+      alt: "WorkHub final mobile interface shown in device mockups",
+      caption: "Selected final-interface presentation from the original WorkHub case-study documentation.",
     },
   },
 };
