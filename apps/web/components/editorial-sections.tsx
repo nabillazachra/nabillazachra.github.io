@@ -7,17 +7,57 @@ import type {
 } from "@/lib/content/types";
 import { RichText } from "./rich-text";
 
-function EditorialImage({ image }: { image?: CmsImage }) {
+const projectEvidence: Record<string, Record<string, CmsImage>> = {
+  "workhub-attendance": {
+    "workhub-problem-panel": {
+      url: "/images/workhub/problem.jpg",
+      alt: "WorkHub case-study problem statement about communication gaps on schedule changes",
+      caption: "Problem framing from the original WorkHub case-study documentation.",
+    },
+    "workhub-needs": {
+      url: "/images/workhub/timeline.jpg",
+      alt: "WorkHub design-thinking process and project timeline",
+      caption: "The documented 12-week design process, from research through prototyping and usability work.",
+    },
+    "workhub-ia": {
+      url: "/images/workhub/ia.jpg",
+      alt: "WorkHub mobile-app information architecture",
+      caption: "Information architecture connecting Home, Attendance, Activity, Teams, and supporting flows.",
+    },
+    "workhub-flows": {
+      url: "/images/workhub/task-flow.jpg",
+      alt: "WorkHub task flow for applying leave",
+      caption: "One of the documented task flows used to translate product requirements into interaction steps.",
+    },
+    "workhub-delivery-panel": {
+      url: "/images/workhub/final-ui.jpg",
+      alt: "WorkHub final mobile interface screens",
+      caption: "Selected final-interface screens from the WorkHub attendance-management concept.",
+    },
+  },
+};
+
+function EditorialImage({
+  image,
+  contain = false,
+}: {
+  image?: CmsImage;
+  contain?: boolean;
+}) {
   if (!image?.url) return null;
 
   return (
     <figure className="editorial-image">
-      <div className="editorial-image-frame">
+      <div
+        className="editorial-image-frame"
+        style={contain ? { aspectRatio: "16 / 9", minHeight: 0 } : undefined}
+      >
         <Image
           alt={image.alt || "Project documentation"}
           fill
           sizes="(max-width: 760px) 100vw, 80vw"
           src={image.url}
+          style={contain ? { objectFit: "contain" } : undefined}
         />
       </div>
       {image.caption ? <figcaption>{image.caption}</figcaption> : null}
@@ -114,10 +154,14 @@ function EditorialBlockView({ block }: { block: EditorialBlock }) {
 
 export function EditorialSections({
   sections,
+  projectSlug,
 }: {
   sections?: ProjectSection[];
+  projectSlug?: string;
 }) {
   if (!sections?.length) return null;
+
+  const evidence = projectSlug ? projectEvidence[projectSlug] : undefined;
 
   return (
     <div className="editorial-sections">
@@ -130,9 +174,20 @@ export function EditorialSections({
             {section.heading ? <h2>{section.heading}</h2> : null}
           </div>
           <div className="case-blocks">
-            {section.blocks?.map((block) => (
-              <EditorialBlockView block={block} key={block._key} />
-            ))}
+            {section.blocks?.map((block) => {
+              const evidenceImage = evidence?.[block._key];
+
+              return (
+                <div key={block._key}>
+                  <EditorialBlockView block={block} />
+                  {evidenceImage ? (
+                    <div style={{ marginTop: "clamp(2rem, 5vw, 5rem)" }}>
+                      <EditorialImage contain image={evidenceImage} />
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </section>
       ))}
