@@ -1,0 +1,35 @@
+.header {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: end;
+  padding: 0 0 clamp(2.5rem, 5vw, 5rem);
+}
+
+.header > :first-child {
+  grid-column: 1 / span 2;
+}
+
+.header > :last-child {
+  grid-column: 4 / span 5;
+  max-width: 34rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+@media (max-width: 700px) {
+  .header {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .header > :first-child {
+    grid-column: 1;
+  }
+
+  .header > :last-child {
+    grid-column: 2 / -1;
+  }
+}
