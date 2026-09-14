@@ -21,9 +21,11 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
-      - name: Install Chromium for visual QA
+      - name: Install Playwright + Chromium for visual QA
         if: github.event_name == 'pull_request'
-        run: npx --yes playwright@1.55.0 install --with-deps chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
       - name: Capture source-artifact visual QA
         if: github.event_name == 'pull_request'
         shell: bash
@@ -37,9 +39,8 @@ jobs:
             if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
             sleep 1
           done
-          cat > /tmp/capture.mjs <<'EOF'
+          node --input-type=module <<'EOF'
           import { chromium } from 'playwright';
-          import fs from 'node:fs';
           const browser = await chromium.launch({headless:true});
           const pages = [
             ['home','/'],
@@ -66,7 +67,6 @@ jobs:
           }
           await browser.close();
           EOF
-          node /tmp/capture.mjs
       - name: Upload visual QA artifact
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
