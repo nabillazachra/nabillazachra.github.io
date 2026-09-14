@@ -20,6 +20,50 @@
   line-height: 0.95;
 }
 
+.artifactRail {
+  margin-bottom: clamp(2.5rem, 5vw, 5rem);
+  padding-top: 0.8rem;
+  border-top: 4px solid var(--signal);
+}
+
+.artifactGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 1rem;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.artifactGrid article {
+  min-height: 9.5rem;
+  padding: 1rem;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.artifactGrid span {
+  display: block;
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+.artifactGrid strong {
+  display: block;
+  margin-top: 2.2rem;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.artifactGrid p {
+  margin-top: 0.65rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
 .lanes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -160,12 +204,26 @@
   line-height: 1.5;
 }
 
+@media (max-width: 900px) {
+  .artifactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 700px) {
   .titleRow,
   .hmw,
   .lanes,
   .testing {
     grid-template-columns: 1fr;
+  }
+
+  .artifactGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .artifactGrid article {
+    min-height: 8.5rem;
   }
 
   .lane:first-child {

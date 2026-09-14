@@ -3,20 +3,24 @@ import Link from "next/link";
 import type { CmsImage, Project } from "@/lib/content/types";
 import { ProjectArtwork } from "./project-artwork";
 
-const workHubArtwork: CmsImage = {
-  url: "/images/workhub/hero.jpg",
-  alt: "WorkHub Attendance mobile application interface shown in a phone mockup",
-  caption: "WorkHub Attendance mobile interface",
+const projectArtwork: Record<string, CmsImage> = {
+  "ferizy-usability-testing": {
+    url: "/images/ferizy/hero-source.webp",
+    alt: "Ferizy usability testing case-study cover showing the tested Ferizy app",
+    caption: "Ferizy usability testing",
+  },
+  "workhub-attendance": {
+    url: "/images/workhub/hero.jpg",
+    alt: "WorkHub Attendance mobile application interface shown in a phone mockup",
+    caption: "WorkHub Attendance mobile interface",
+  },
 };
 
 export function ProjectList({ projects }: { projects: Project[] }) {
   return (
     <div className="project-list">
       {projects.map((project, index) => {
-        const artwork =
-          project.slug === "workhub-attendance"
-            ? workHubArtwork
-            : project.heroImage;
+        const artwork = projectArtwork[project.slug] || project.heroImage;
 
         return (
           <article className="project-row" key={project.slug}>

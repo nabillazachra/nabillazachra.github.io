@@ -14,6 +14,13 @@ const onStreetOfficer = [
   "Keep the physical and digital service aligned",
 ];
 
+const onStreetArtifacts = [
+  ["01", "Customer flow", "Buy Access + Check-In"],
+  ["02", "Officer flow", "OTC payment"],
+  ["03", "Workflow", "Screens across the service"],
+  ["04", "Prototype", "Low-fi → high-fi"],
+];
+
 const jagoSteps = [
   {
     title: "Research",
@@ -41,6 +48,36 @@ const jagoSteps = [
   },
 ];
 
+const jagoArtifacts = [
+  ["01", "Affinity diagram", "Cluster ideas before prioritising"],
+  ["02", "Crazy 8s", "Explore interface directions quickly"],
+  ["03", "Insurance flow", "Claim steps made explicit"],
+  ["04", "Prototype", "Create Last Wish + claim journey"],
+];
+
+function ArtifactRail({
+  eyebrow,
+  items,
+}: {
+  eyebrow: string;
+  items: string[][];
+}) {
+  return (
+    <div className={styles.artifactRail}>
+      <p className="mono-label">{eyebrow}</p>
+      <div className={styles.artifactGrid}>
+        {items.map(([index, title, note]) => (
+          <article key={title}>
+            <span>{index}</span>
+            <strong>{title}</strong>
+            <p>{note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function OnStreetSystemMap() {
   return (
     <aside className={styles.diagram} aria-labelledby="onstreet-system-title">
@@ -50,6 +87,8 @@ export function OnStreetSystemMap() {
           The mobile flow only works if the on-site operation works with it.
         </h3>
       </div>
+
+      <ArtifactRail eyebrow="Source artifacts in the original case" items={onStreetArtifacts} />
 
       <div className={styles.lanes}>
         <article className={styles.lane}>
@@ -81,9 +120,9 @@ export function OnStreetSystemMap() {
 
       <p className={styles.bridge}>
         The original case documents customer flow, parking-officer flow, Buy
-        Access, Check-In, and officer OTC payment. This map keeps the portfolio
-        focused on the service relationship rather than presenting parking as
-        only a checkout UI.
+        Access, Check-In, workflow screens, low-fidelity design, high-fidelity
+        design, and officer OTC payment. The portfolio keeps those artifacts in
+        one service story instead of presenting parking as only a checkout UI.
       </p>
     </aside>
   );
@@ -98,6 +137,8 @@ export function JagoProcessMap() {
           The emotional framing became the filter for every later decision.
         </h3>
       </div>
+
+      <ArtifactRail eyebrow="Evidence carried through the process" items={jagoArtifacts} />
 
       <div className={styles.hmw}>
         <p className="mono-label">Selected How Might We</p>
