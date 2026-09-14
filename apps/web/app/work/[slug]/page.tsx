@@ -50,17 +50,10 @@ const fullNarrativeFields: NarrativeField[] = [
   { key: "reflection", label: "Reflection" },
 ];
 
-const projectHeroArtwork: Record<string, CmsImage> = {
-  "ferizy-usability-testing": {
-    url: "/images/ferizy/hero-source.webp",
-    alt: "Ferizy usability testing case-study cover showing the tested Ferizy app",
-    caption: "Ferizy usability testing — original tested-app case-study artwork.",
-  },
-  "workhub-attendance": {
-    url: "/images/workhub/hero.jpg",
-    alt: "WorkHub Attendance mobile application interface shown in a phone mockup",
-    caption: "WorkHub Attendance — selected mobile interface from the original case-study documentation.",
-  },
+const workHubHero: CmsImage = {
+  url: "/images/workhub/hero.jpg",
+  alt: "WorkHub Attendance mobile application interface shown in a phone mockup",
+  caption: "WorkHub Attendance — selected mobile interface from the original case-study documentation.",
 };
 
 export async function generateStaticParams() {
@@ -92,7 +85,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const narrativeFields = hasEditorialStory
     ? overviewFields
     : fullNarrativeFields;
-  const heroImage = projectHeroArtwork[project.slug] || project.heroImage;
+  const heroImage =
+    project.slug === "workhub-attendance" ? workHubHero : project.heroImage;
 
   return (
     <main className="case-main" id="main-content">
