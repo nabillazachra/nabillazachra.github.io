@@ -1,5 +1,12 @@
 import styles from "./ferizy-evidence.module.css";
 
+const process = [
+  ["01", "Create test plan", "Objectives, script, recruitment"],
+  ["02", "Facilitate test", "Observe, interview, note behaviour"],
+  ["03", "Analyse case data", "Click paths, issues, navigation"],
+  ["04", "Create test report", "Findings + recommendations"],
+];
+
 const findings = [
   {
     stat: "4/5",
@@ -39,10 +46,42 @@ export function FerizyEvidence() {
   return (
     <aside className={styles.wrap} aria-labelledby="ferizy-findings-title">
       <div className={styles.header}>
-        <p className="mono-label">Observed friction</p>
-        <h3 id="ferizy-findings-title">Three patterns emerged from five moderated sessions.</h3>
+        <p className="mono-label">Research evidence</p>
+        <h3 id="ferizy-findings-title">
+          Five moderated sessions turned booking friction into traceable design directions.
+        </h3>
       </div>
 
+      <div className={styles.studyMeta}>
+        <article>
+          <span>5</span>
+          <p>participants</p>
+        </article>
+        <article>
+          <span>20–30</span>
+          <p>minutes / session</p>
+        </article>
+        <article>
+          <span>5</span>
+          <p>booking tasks</p>
+        </article>
+        <article>
+          <span>Moderated</span>
+          <p>think-aloud usability study</p>
+        </article>
+      </div>
+
+      <div className={styles.process}>
+        {process.map(([index, title, note]) => (
+          <article key={title}>
+            <span>{index}</span>
+            <strong>{title}</strong>
+            <p>{note}</p>
+          </article>
+        ))}
+      </div>
+
+      <p className={styles.sectionLabel}>Observed friction</p>
       <div className={styles.grid}>
         {findings.map((finding) => (
           <article className={styles.finding} key={finding.title}>
