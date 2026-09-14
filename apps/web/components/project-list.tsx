@@ -5,7 +5,7 @@ import { ProjectArtwork } from "./project-artwork";
 
 const projectArtwork: Record<string, CmsImage> = {
   "ferizy-usability-testing": {
-    url: "/images/ferizy/hero.svg",
+    url: "/images/ferizy/hero-source.webp",
     alt: "Ferizy usability testing case-study cover showing the tested Ferizy app",
     caption: "Ferizy usability testing",
   },
