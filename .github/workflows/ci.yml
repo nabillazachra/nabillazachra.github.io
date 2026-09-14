@@ -21,3 +21,56 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - name: Install Chromium for visual QA
+        if: github.event_name == 'pull_request'
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+      - name: Capture source-artifact visual QA
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p visual-qa/desktop visual-qa/mobile
+          python3 -m http.server 4173 --directory apps/web/out >/tmp/portfolio-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          cat > /tmp/capture.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+          const browser = await chromium.launch({headless:true});
+          const pages = [
+            ['home','/'],
+            ['ferizy','/work/ferizy-usability-testing/'],
+            ['onstreet','/work/onstreet-parking/'],
+            ['jago','/work/jago-last-wish/']
+          ];
+          for (const [folder, viewport] of [['desktop',{width:1440,height:1200}],['mobile',{width:393,height:852}]]) {
+            const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+            for (const [name,path] of pages) {
+              const page = await context.newPage();
+              await page.goto(`http://127.0.0.1:4173${path}`, {waitUntil:'networkidle'});
+              await page.evaluate(async () => {
+                for (let y = 0; y < document.body.scrollHeight; y += 700) {
+                  window.scrollTo(0, y);
+                  await new Promise(r => setTimeout(r, 35));
+                }
+                window.scrollTo(0, 0);
+              });
+              await page.screenshot({path:`visual-qa/${folder}/${name}.png`, fullPage:true});
+              await page.close();
+            }
+            await context.close();
+          }
+          await browser.close();
+          EOF
+          node /tmp/capture.mjs
+      - name: Upload visual QA artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-source-artifact-qa
+          path: visual-qa
+          if-no-files-found: error
