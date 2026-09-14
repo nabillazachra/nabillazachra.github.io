@@ -52,9 +52,9 @@ const fullNarrativeFields: NarrativeField[] = [
 
 const projectHeroArtwork: Record<string, CmsImage> = {
   "ferizy-usability-testing": {
-    url: "/images/ferizy/hero.webp",
-    alt: "Ferizy usability testing case-study cover with ferry imagery and research framing",
-    caption: "Ferizy usability testing — original case-study cover.",
+    url: "/images/ferizy/hero.svg",
+    alt: "Ferizy usability testing case-study cover showing the tested Ferizy app",
+    caption: "Ferizy usability testing — original tested-app case-study artwork.",
   },
   "workhub-attendance": {
     url: "/images/workhub/hero.jpg",
