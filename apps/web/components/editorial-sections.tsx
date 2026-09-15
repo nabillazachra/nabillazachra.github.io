@@ -8,36 +8,7 @@ import type {
 import { FerizyEvidence } from "./ferizy-evidence";
 import { JagoProcessMap, OnStreetSystemMap } from "./project-diagrams";
 import { RichText } from "./rich-text";
-
-const projectEvidence: Record<string, Record<string, CmsImage>> = {
-  "workhub-attendance": {
-    "workhub-problem-panel": {
-      url: "/images/workhub/problem.jpg",
-      alt: "WorkHub case-study problem statement about communication gaps on schedule changes",
-      caption: "Problem framing from the original WorkHub case-study documentation.",
-    },
-    "workhub-needs": {
-      url: "/images/workhub/timeline.jpg",
-      alt: "WorkHub design-thinking process and project timeline",
-      caption: "The documented 12-week design process, from research through prototyping and usability work.",
-    },
-    "workhub-ia": {
-      url: "/images/workhub/ia.jpg",
-      alt: "WorkHub mobile-app information architecture",
-      caption: "Information architecture connecting Home, Attendance, Activity, Teams, and supporting flows.",
-    },
-    "workhub-flows": {
-      url: "/images/workhub/task-flow.jpg",
-      alt: "WorkHub task flow for applying leave",
-      caption: "One of the documented task flows used to translate product requirements into interaction steps.",
-    },
-    "workhub-delivery-panel": {
-      url: "/images/workhub/hero.jpg",
-      alt: "WorkHub final mobile interface shown in device mockups",
-      caption: "Selected final-interface presentation from the original WorkHub case-study documentation.",
-    },
-  },
-};
+import { WorkHubEvidence } from "./workhub-evidence";
 
 function EditorialImage({
   image,
@@ -154,6 +125,15 @@ function EditorialBlockView({ block }: { block: EditorialBlock }) {
   }
 }
 
+function workHubVariant(blockKey: string) {
+  if (blockKey === "workhub-problem-panel") return "framing" as const;
+  if (blockKey === "workhub-needs") return "research" as const;
+  if (blockKey === "workhub-ia") return "architecture" as const;
+  if (blockKey === "workhub-flows") return "flows" as const;
+  if (blockKey === "workhub-delivery-panel") return "delivery" as const;
+  return null;
+}
+
 export function EditorialSections({
   sections,
   projectSlug,
@@ -162,8 +142,6 @@ export function EditorialSections({
   projectSlug?: string;
 }) {
   if (!sections?.length) return null;
-
-  const evidence = projectSlug ? projectEvidence[projectSlug] : undefined;
 
   return (
     <div className="editorial-sections">
@@ -177,7 +155,6 @@ export function EditorialSections({
           </div>
           <div className="case-blocks">
             {section.blocks?.map((block) => {
-              const evidenceImage = evidence?.[block._key];
               const showFerizyEvidence =
                 projectSlug === "ferizy-usability-testing" &&
                 block._key === "ferizy-report-structure";
@@ -187,15 +164,15 @@ export function EditorialSections({
               const showJagoProcess =
                 projectSlug === "jago-last-wish" &&
                 block._key === "jago-process";
+              const workHub =
+                projectSlug === "workhub-attendance"
+                  ? workHubVariant(block._key)
+                  : null;
 
               return (
                 <div key={block._key}>
                   <EditorialBlockView block={block} />
-                  {evidenceImage ? (
-                    <div style={{ marginTop: "clamp(2rem, 5vw, 5rem)" }}>
-                      <EditorialImage contain image={evidenceImage} />
-                    </div>
-                  ) : null}
+                  {workHub ? <WorkHubEvidence variant={workHub} /> : null}
                   {showFerizyEvidence ? <FerizyEvidence /> : null}
                   {showOnStreetMap ? <OnStreetSystemMap /> : null}
                   {showJagoProcess ? <JagoProcessMap /> : null}

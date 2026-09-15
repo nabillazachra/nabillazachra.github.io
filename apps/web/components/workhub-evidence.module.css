@@ -1,0 +1,367 @@
+.panel {
+  margin-top: clamp(2rem, 5vw, 5rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid rgba(30, 30, 30, 0.16);
+  background: #f7f4eb;
+}
+
+.split,
+.metrics,
+.branchGrid,
+.phoneGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  min-height: 220px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(30, 30, 30, 0.14);
+  background: #fff;
+}
+
+.accentCard {
+  background: #ffe2e0;
+}
+
+.eyebrow,
+.timelineStep > span,
+.sourceNote {
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+
+.card h3 {
+  max-width: 18ch;
+  margin: 1.25rem 0 0.75rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  line-height: 0.98;
+}
+
+.card p:last-child {
+  max-width: 46ch;
+  line-height: 1.55;
+}
+
+.metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 2rem;
+}
+
+.metrics > div {
+  display: flex;
+  min-height: 140px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.2rem;
+  border-top: 1px solid #1e1e1e;
+}
+
+.metrics strong {
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.8;
+  font-weight: 500;
+  color: #a31621;
+}
+
+.metrics span {
+  font-size: 0.9rem;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid rgba(30, 30, 30, 0.3);
+  border-bottom: 1px solid rgba(30, 30, 30, 0.3);
+}
+
+.timelineStep {
+  min-height: 170px;
+  padding: 1.2rem 1rem;
+  border-right: 1px solid rgba(30, 30, 30, 0.16);
+}
+
+.timelineStep:last-child {
+  border-right: 0;
+}
+
+.timelineStep > span {
+  color: #a31621;
+}
+
+.timelineStep h4 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.timelineStep p {
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.chips span {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #a31621;
+  border-radius: 999px;
+  color: #a31621;
+  background: #fff;
+  font-size: 0.82rem;
+}
+
+.architecture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nodePrimary,
+.node {
+  border: 1px solid #a31621;
+  border-radius: 999px;
+  background: #fff;
+  color: #a31621;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+}
+
+.nodePrimary {
+  background: #a31621;
+  color: #fff;
+}
+
+.arrow {
+  color: #a31621;
+  font-size: 1.25rem;
+  flex: 0 0 auto;
+}
+
+.authRow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.authRow > span {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.branchGrid {
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.branch {
+  padding: 1.25rem;
+  border-top: 3px solid #a31621;
+  background: #fff;
+}
+
+.branch h4 {
+  margin-bottom: 0.8rem;
+  color: #a31621;
+}
+
+.branch p {
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.flowList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.flowRow {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.2);
+}
+
+.flowRow:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.flowRow h4 {
+  margin-bottom: 1rem;
+  color: #a31621;
+}
+
+.flowSteps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.flowStepWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.flowStep {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(30, 30, 30, 0.25);
+  background: #fff;
+  font-size: 0.8rem;
+}
+
+.phoneGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.phone {
+  min-height: 320px;
+  padding: 0.55rem;
+  border: 7px solid #272938;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(30, 30, 30, 0.08);
+}
+
+.phoneTop {
+  width: 38%;
+  height: 10px;
+  margin: 0 auto 1rem;
+  border-radius: 999px;
+  background: #272938;
+}
+
+.phoneBrand {
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #a31621;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.phoneVisual {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  gap: 0.55rem;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
+
+.bigBlock,
+.smallBlock,
+.line,
+.lineShort,
+.action {
+  display: block;
+  border-radius: 6px;
+}
+
+.bigBlock {
+  height: 62px;
+  background: #ffe2e0;
+}
+
+.smallBlock {
+  height: 38px;
+  background: #f3f3f3;
+}
+
+.line {
+  width: 88%;
+  height: 7px;
+  background: #dedede;
+}
+
+.lineShort {
+  width: 56%;
+  height: 7px;
+  background: #e9e9e9;
+}
+
+.action {
+  width: 72%;
+  height: 28px;
+  margin-top: 0.6rem;
+  background: #a31621;
+}
+
+.phoneCopy {
+  padding: 0.55rem;
+}
+
+.phoneCopy h4 {
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.phoneCopy p {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: #595959;
+}
+
+.sourceNote {
+  margin-top: 1.5rem;
+  color: #595959;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .timeline,
+  .phoneGrid,
+  .branchGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .timelineStep:nth-child(2n) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .split,
+  .metrics,
+  .timeline,
+  .phoneGrid,
+  .branchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .timelineStep,
+  .timelineStep:nth-child(2n) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.16);
+  }
+
+  .timelineStep:last-child {
+    border-bottom: 0;
+  }
+
+  .flowSteps,
+  .flowStepWrap {
+    align-items: flex-start;
+  }
+
+  .flowStepWrap {
+    width: 100%;
+  }
+
+  .flowStep {
+    flex: 1;
+  }
+}
