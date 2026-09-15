@@ -5,6 +5,7 @@ import { ProjectArtwork } from "@/components/project-artwork";
 import { ProjectList } from "@/components/project-list";
 import { RichText } from "@/components/rich-text";
 import { getHomeContent } from "@/lib/content/get-content";
+import aboutStyles from "./about-section.module.css";
 
 export default async function HomePage() {
   const { projects, experiences, playground, about, settings } =
@@ -106,7 +107,7 @@ export default async function HomePage() {
       </section>
 
       <section
-        className="section shell about-section"
+        className={`section shell about-section ${aboutStyles.polished}`}
         id="about"
         aria-labelledby="about-title"
       >
