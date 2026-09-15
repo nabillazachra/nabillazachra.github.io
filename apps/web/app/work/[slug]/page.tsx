@@ -7,7 +7,7 @@ import { ExternalLink } from "@/components/external-link";
 import { ProjectArtwork } from "@/components/project-artwork";
 import { RichText } from "@/components/rich-text";
 import { getProject, getProjectSlugs } from "@/lib/content/get-content";
-import type { CmsImage, PortableTextBlock, Project } from "@/lib/content/types";
+import type { PortableTextBlock, Project } from "@/lib/content/types";
 import styles from "./case-overview.module.css";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
@@ -50,12 +50,6 @@ const fullNarrativeFields: NarrativeField[] = [
   { key: "reflection", label: "Reflection" },
 ];
 
-const workHubHero: CmsImage = {
-  url: "/images/workhub/hero.jpg",
-  alt: "WorkHub Attendance mobile application interface shown in a phone mockup",
-  caption: "WorkHub Attendance — selected mobile interface from the original case-study documentation.",
-};
-
 export async function generateStaticParams() {
   return (await getProjectSlugs()).map((slug) => ({ slug }));
 }
@@ -85,8 +79,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const narrativeFields = hasEditorialStory
     ? overviewFields
     : fullNarrativeFields;
-  const heroImage =
-    project.slug === "workhub-attendance" ? workHubHero : project.heroImage;
 
   return (
     <main className="case-main" id="main-content">
@@ -124,7 +116,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </header>
 
         <div className="case-visual shell-wide">
-          <ProjectArtwork image={heroImage} project={project} priority />
+          <ProjectArtwork image={project.heroImage} project={project} priority />
         </div>
 
         <div className="case-narrative shell">
