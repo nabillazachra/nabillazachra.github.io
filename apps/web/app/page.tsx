@@ -128,7 +128,10 @@ export default async function HomePage() {
               </div>
             )}
             {about.availability ? (
-              <p className="availability">{about.availability}</p>
+              <div className="availability">
+                <p className="mono-label">Availability</p>
+                <p>{about.availability}</p>
+              </div>
             ) : null}
           </div>
           <CareerArc />
