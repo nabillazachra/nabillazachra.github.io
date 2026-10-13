@@ -476,3 +476,77 @@
     border-right: 0;
   }
 }
+
+
+/* Motion details */
+.metric:nth-child(2) { transition-delay: 70ms; }
+.metric:nth-child(3) { transition-delay: 140ms; }
+.metric:nth-child(4) { transition-delay: 210ms; }
+
+.workflowStep:nth-child(2) { transition-delay: 90ms; }
+.workflowStep:nth-child(3) { transition-delay: 180ms; }
+
+.capabilities > div:nth-child(2) { transition-delay: 45ms; }
+.capabilities > div:nth-child(3) { transition-delay: 90ms; }
+.capabilities > div:nth-child(4) { transition-delay: 135ms; }
+.capabilities > div:nth-child(5) { transition-delay: 180ms; }
+.capabilities > div:nth-child(6) { transition-delay: 225ms; }
+.capabilities > div:nth-child(7) { transition-delay: 270ms; }
+.capabilities > div:nth-child(8) { transition-delay: 315ms; }
+
+.careerArc article:nth-child(2),
+.teachingGrid article:nth-child(2) {
+  transition-delay: 110ms;
+}
+
+.metric strong,
+.workflowStep h3,
+.careerArc h3,
+.teachingGrid h3 {
+  transition: transform 500ms var(--ease-editorial);
+}
+
+.metric:hover strong {
+  transform: translateY(-5px);
+}
+
+.workflowStep,
+.capabilities > div,
+.careerArc article,
+.teachingGrid article {
+  transition:
+    background-color 350ms ease,
+    color 350ms ease,
+    transform 650ms var(--ease-editorial),
+    opacity 650ms var(--ease-editorial);
+}
+
+.workflowStep:hover {
+  background: #2a2a25;
+}
+
+.capabilities > div:hover {
+  background: #2d2d28;
+}
+
+.capabilities > div:hover p {
+  color: #fff8ea;
+}
+
+.careerArc article:hover,
+.teachingGrid article:hover {
+  background: rgb(240 75 35 / 6%);
+}
+
+.privateCta {
+  transition:
+    color 260ms ease,
+    transform 400ms var(--ease-editorial),
+    border-color 260ms ease;
+}
+
+.privateCta:hover,
+.privateCta:focus-visible {
+  color: var(--signal);
+  transform: translateX(8px);
+}
