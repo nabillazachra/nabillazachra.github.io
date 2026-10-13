@@ -43,7 +43,7 @@
 }
 
 .method {
-  padding: clamp(6rem, 11vw, 11rem) 0;
+  padding: clamp(4.5rem, 7vw, 7.5rem) 0;
   background: var(--ink);
   color: var(--ivory);
 }
@@ -52,7 +52,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1rem;
-  padding-bottom: clamp(4rem, 8vw, 8rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
 }
 
 .methodHeader > :first-child {
@@ -106,7 +106,7 @@
 }
 
 .workflowStep {
-  min-height: 28rem;
+  min-height: 22rem;
   padding: 1.5rem;
   border-right: 1px solid #55554e;
 }
@@ -124,7 +124,7 @@
 }
 
 .workflowStep h3 {
-  margin-top: clamp(5rem, 9vw, 9rem);
+  margin-top: clamp(3.5rem, 5vw, 5rem);
   font-family: var(--serif);
   font-size: clamp(2.8rem, 5vw, 5.5rem);
   font-weight: 400;
@@ -179,7 +179,7 @@
 .capabilities {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(4rem, 8vw, 8rem);
+  margin-top: clamp(3rem, 5vw, 5.25rem);
   border-top: 1px solid #55554e;
 }
 
@@ -224,14 +224,14 @@
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(4rem, 8vw, 7rem);
+  margin-top: clamp(3rem, 5vw, 5rem);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
 
 .careerArc article {
   display: flex;
-  min-height: 24rem;
+  min-height: 20rem;
   flex-direction: column;
   padding: 1.5rem;
   border-right: 1px solid var(--line);
@@ -246,7 +246,7 @@
 }
 
 .careerArc h3 {
-  margin-top: clamp(4rem, 7vw, 7rem);
+  margin-top: clamp(3rem, 4.5vw, 4.5rem);
   max-width: 14ch;
   font-family: var(--serif);
   font-size: clamp(1.9rem, 3.1vw, 3.2rem);
@@ -271,7 +271,7 @@
 }
 
 .teaching {
-  padding: clamp(5rem, 9vw, 9rem) 0;
+  padding: clamp(4.25rem, 6.5vw, 6.75rem) 0;
   background: var(--paper);
   color: var(--ink);
 }
@@ -306,7 +306,7 @@
 }
 
 .teachingGrid article {
-  min-height: 18rem;
+  min-height: 15.5rem;
   padding: 1.5rem 1.5rem 2rem;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--ink);
@@ -321,7 +321,7 @@
 }
 
 .teachingGrid h3 {
-  margin-top: 3.5rem;
+  margin-top: 2.5rem;
   font-family: var(--serif);
   font-size: clamp(2rem, 3.2vw, 3.4rem);
   font-weight: 400;
