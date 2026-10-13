@@ -38,6 +38,26 @@ await career.locator("summary").click();
 if (!(await career.evaluate((el) => el.open))) {
   throw new Error("Career disclosure did not enter open state");
 }
+const careerDebug = await career.locator("h3").evaluate((element) => {
+  const chain = [];
+  let node = element;
+  while (node) {
+    const style = getComputedStyle(node);
+    const rect = node.getBoundingClientRect();
+    chain.push({
+      tag: node.tagName,
+      className: String(node.className || ""),
+      display: style.display,
+      visibility: style.visibility,
+      opacity: style.opacity,
+      width: rect.width,
+      height: rect.height,
+    });
+    node = node.parentElement;
+  }
+  return chain;
+});
+console.log("CAREER_DEBUG", JSON.stringify(careerDebug));
 if (!(await career.locator("h3").isVisible())) {
   throw new Error("Career detail did not open");
 }
