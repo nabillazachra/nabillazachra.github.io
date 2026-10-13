@@ -68,7 +68,7 @@ export function WorkMethod() {
           </p>
         </header>
 
-        <div className={styles.workflow}>
+        <div className={`${styles.workflow} ${styles.desktopOnly}`}>
           {WORKFLOW.map((step, index) => (
             <article className={styles.workflowStep} key={step.title}>
               <div className={styles.stepTop}>
@@ -80,6 +80,23 @@ export function WorkMethod() {
                 {step.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
+          ))}
+        </div>
+
+        <div className={styles.mobileAccordion}>
+          {WORKFLOW.map((step) => (
+            <details className={styles.mobileDisclosure} key={step.title}>
+              <summary>
+                <span>{step.index}</span>
+                <strong>{step.title}</strong>
+                <i aria-hidden="true">+</i>
+              </summary>
+              <div className={styles.mobileDisclosureBody}>
+                <ul>
+                  {step.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </div>
+            </details>
           ))}
         </div>
       </div>
@@ -105,7 +122,7 @@ export function PrivateWork() {
           </p>
         </div>
 
-        <div className={styles.capabilities}>
+        <div className={`${styles.capabilities} ${styles.desktopOnly}`}>
           {CAPABILITIES.map((item, index) => (
             <div key={item}>
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -113,6 +130,22 @@ export function PrivateWork() {
             </div>
           ))}
         </div>
+
+        <details className={`${styles.mobileDisclosure} ${styles.capabilityDisclosure}`}>
+          <summary>
+            <span>08 capabilities</span>
+            <strong>View capabilities</strong>
+            <i aria-hidden="true">+</i>
+          </summary>
+          <div className={styles.capabilityList}>
+            {CAPABILITIES.map((item, index) => (
+              <div key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </details>
 
         <a
           className={styles.privateCta}
@@ -127,7 +160,8 @@ export function PrivateWork() {
 
 export function CareerArc() {
   return (
-    <div className={styles.careerArc} aria-label="Career progression">
+    <>
+      <div className={`${styles.careerArc} ${styles.desktopOnly}`} aria-label="Career progression">
       <article>
         <p className={styles.arcMeta}>BUILD / SOFTWARE FOUNDATION</p>
         <h3>From code and implementation.</h3>
@@ -155,7 +189,53 @@ export function CareerArc() {
         </p>
         <span>2026—NOW</span>
       </article>
-    </div>
+      </div>
+
+      <div className={`${styles.mobileAccordion} ${styles.careerMobile}`} aria-label="Career progression">
+        <details className={styles.mobileDisclosure}>
+          <summary>
+            <span>2017 · 2020—2022</span>
+            <strong>Build / Software foundation</strong>
+            <i aria-hidden="true">+</i>
+          </summary>
+          <div className={styles.mobileDisclosureBody}>
+            <h3>From code and implementation.</h3>
+            <p>
+              Web development, CMS work, testing, SIT/UAT documentation, and the
+              technical foundation behind how I think about products.
+            </p>
+          </div>
+        </details>
+        <details className={styles.mobileDisclosure}>
+          <summary>
+            <span>2022—2026</span>
+            <strong>Design / Product & UX</strong>
+            <i aria-hidden="true">+</i>
+          </summary>
+          <div className={styles.mobileDisclosureBody}>
+            <h3>Into users, flows, and interfaces.</h3>
+            <p>
+              End-to-end UX/UI, design systems, enterprise interfaces, kiosks,
+              research, prototyping, and usability testing.
+            </p>
+          </div>
+        </details>
+        <details className={styles.mobileDisclosure}>
+          <summary>
+            <span>2026—Now</span>
+            <strong>Consult / Systems & solutions</strong>
+            <i aria-hidden="true">+</i>
+          </summary>
+          <div className={styles.mobileDisclosureBody}>
+            <h3>Now connecting business to systems.</h3>
+            <p>
+              Requirements, solution scope, functional specifications, evaluation,
+              compliance, stakeholder translation, and presales delivery.
+            </p>
+          </div>
+        </details>
+      </div>
+    </>
   );
 }
 
