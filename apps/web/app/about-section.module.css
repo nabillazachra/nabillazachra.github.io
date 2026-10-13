@@ -28,15 +28,54 @@
   text-transform: uppercase;
 }
 
+.aboutPortrait {
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  width: 100%;
+  max-width: 22rem;
+  margin: 0;
+}
+
+.portraitFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #dfddd5;
+}
+
+.portraitFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aboutPortrait figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.7rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--signal);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .polished :global(.about-statement h3) {
-  grid-column: 3 / span 5;
-  max-width: 11ch;
-  font-size: clamp(2.8rem, 4.6vw, 5rem);
+  grid-column: 4 / span 4;
+  grid-row: 2;
+  max-width: 10ch;
+  font-size: clamp(2.8rem, 4.2vw, 4.7rem);
   line-height: 0.96;
 }
 
 .polished :global(.about-statement .rich-text) {
   grid-column: 9 / -1;
+  grid-row: 2;
   display: grid;
   align-self: end;
   gap: 1rem;
@@ -190,12 +229,32 @@
 }
 
 @media (max-width: 1100px) {
+  .polished :global(.about-statement) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .polished :global(.about-statement)::before {
+    grid-column: 1 / span 2;
+  }
+
+  .aboutPortrait {
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 2;
+    max-width: 20rem;
+  }
+
   .polished :global(.about-statement h3) {
-    grid-column: 3 / span 6;
+    grid-column: 4 / -1;
+    grid-row: 2;
+    max-width: 11ch;
   }
 
   .polished :global(.about-statement .rich-text) {
-    grid-column: 9 / -1;
+    grid-column: 4 / -1;
+    grid-row: 3;
+    align-self: start;
+    max-width: 42rem;
+    margin-top: 1.5rem;
   }
 
   .polished :global(.experience-list article .mono-label) {
@@ -222,18 +281,26 @@
   }
 
   .polished :global(.about-statement)::before {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+  .aboutPortrait {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+    max-width: none;
   }
 
   .polished :global(.about-statement h3) {
-    grid-column: 2 / -1;
-    max-width: 12ch;
+    grid-column: 3 / -1;
+    grid-row: 2;
+    max-width: 11ch;
   }
 
   .polished :global(.about-statement .rich-text) {
-    grid-column: 2 / -1;
-    margin-top: 1rem;
+    grid-column: 3 / -1;
+    grid-row: 3;
     max-width: 40rem;
+    margin-top: 1rem;
   }
 
   .polished :global(.experience-list article),
@@ -289,6 +356,16 @@
   .polished :global(.about-statement)::before {
     display: block;
     margin-bottom: 1rem;
+  }
+
+  .aboutPortrait {
+    width: min(72vw, 18rem);
+    max-width: none;
+    margin: 0 0 1.75rem auto;
+  }
+
+  .aboutPortrait figcaption {
+    font-size: 0.54rem;
   }
 
   .polished :global(.about-statement h3) {
