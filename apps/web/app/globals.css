@@ -1393,49 +1393,53 @@ dd {
 }
 
 .motion-ready [data-reveal] {
-  opacity: 0;
-  transform: translateY(34px);
-  transition:
-    opacity 760ms var(--ease-editorial),
-    transform 900ms var(--ease-editorial),
-    clip-path 900ms var(--ease-editorial);
-  will-change: opacity, transform;
-}
-
-.motion-ready [data-reveal="heading"] {
-  clip-path: inset(0 0 100% 0);
-  transform: translateY(22px);
-}
-
-.motion-ready [data-reveal="row"] {
-  transform: translateY(24px);
-}
-
-.motion-ready [data-reveal="project"] {
-  transform: translateY(40px);
-}
-
-.motion-ready [data-reveal="metric"] {
-  transform: translateY(48px) scale(0.985);
-}
-
-.motion-ready [data-reveal="panel"] {
-  transform: translateY(36px) scale(0.99);
-}
-
-.motion-ready [data-reveal="cell"] {
-  transform: translateY(18px);
-}
-
-.motion-ready [data-reveal="contact"] {
-  clip-path: inset(8% 0 0 0);
-  transform: translateY(0);
-}
-
-.motion-ready [data-reveal].is-visible {
   opacity: 1;
   transform: none;
   clip-path: inset(0 0 0 0);
+  transition:
+    opacity 680ms var(--ease-editorial),
+    transform 820ms var(--ease-editorial),
+    clip-path 820ms var(--ease-editorial);
+}
+
+.motion-ready [data-reveal].reveal-pending {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: opacity, transform;
+}
+
+.motion-ready [data-reveal="heading"].reveal-pending {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(18px);
+}
+
+.motion-ready [data-reveal="row"].reveal-pending {
+  transform: translateY(20px);
+}
+
+.motion-ready [data-reveal="project"].reveal-pending {
+  transform: translateY(30px);
+}
+
+.motion-ready [data-reveal="metric"].reveal-pending {
+  transform: translateY(34px) scale(0.99);
+}
+
+.motion-ready [data-reveal="panel"].reveal-pending {
+  transform: translateY(26px) scale(0.995);
+}
+
+.motion-ready [data-reveal="cell"].reveal-pending {
+  transform: translateY(14px);
+}
+
+.motion-ready [data-reveal="contact"].reveal-pending {
+  clip-path: inset(5% 0 0 0);
+  transform: translateY(0);
+}
+
+.motion-ready [data-reveal].is-initial {
+  transition: none;
 }
 
 .project-row:nth-child(2) {
@@ -1590,7 +1594,8 @@ dd {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .motion-ready [data-reveal] {
+  .motion-ready [data-reveal],
+  .motion-ready [data-reveal].reveal-pending {
     opacity: 1 !important;
     clip-path: none !important;
     transform: none !important;
