@@ -106,18 +106,43 @@ export default async function HomePage() {
           </div>
           <div className="experience-list">
             {experiences.length ? (
-              experiences.map((experience) => (
-                <article
-                  key={`${experience.organisation}-${experience.period}`}
-                >
-                  <p className="mono-label">{experience.period}</p>
-                  <h4>{experience.role}</h4>
-                  <p>{experience.organisation}</p>
-                  {experience.summary ? (
-                    <p className="experience-summary">{experience.summary}</p>
-                  ) : null}
-                </article>
-              ))
+              <>
+                <div className={aboutStyles.experienceDesktop}>
+                  {experiences.map((experience) => (
+                    <article
+                      key={`${experience.organisation}-${experience.period}`}
+                    >
+                      <p className="mono-label">{experience.period}</p>
+                      <h4>{experience.role}</h4>
+                      <p>{experience.organisation}</p>
+                      {experience.summary ? (
+                        <p className="experience-summary">{experience.summary}</p>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+
+                <div className={aboutStyles.experienceMobile}>
+                  {experiences.map((experience) => (
+                    <details
+                      className={aboutStyles.experienceDisclosure}
+                      key={`${experience.organisation}-${experience.period}-mobile`}
+                    >
+                      <summary>
+                        <span className="mono-label">{experience.period}</span>
+                        <span>
+                          <strong>{experience.role}</strong>
+                          <small>{experience.organisation}</small>
+                        </span>
+                        <i aria-hidden="true">+</i>
+                      </summary>
+                      {experience.summary ? (
+                        <p>{experience.summary}</p>
+                      ) : null}
+                    </details>
+                  ))}
+                </div>
+              </>
             ) : (
               <div className="experience-empty">
                 <p className="mono-label">Experience record</p>
