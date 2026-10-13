@@ -1,16 +1,37 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export function MotionObserver() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
+    const nodes = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    const isInitiallyVisible = (node: HTMLElement) => {
+      const rect = node.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      return rect.bottom > -24 && rect.top < viewportHeight * 1.08;
+    };
+
+    nodes.forEach((node) => {
+      if (isInitiallyVisible(node)) {
+        node.classList.add("is-visible", "is-initial");
+      } else {
+        node.classList.add("reveal-pending");
+      }
+    });
+
     root.classList.add("motion-ready");
 
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-
     if (!("IntersectionObserver" in window)) {
-      nodes.forEach((node) => node.classList.add("is-visible"));
+      nodes.forEach((node) => {
+        node.classList.remove("reveal-pending");
+        node.classList.add("is-visible");
+      });
       return;
     }
 
@@ -18,14 +39,25 @@ export function MotionObserver() {
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+
+          const node = entry.target as HTMLElement;
+          node.classList.remove("reveal-pending");
+          node.classList.add("is-visible");
+          observer.unobserve(node);
         });
       },
-      { rootMargin: "0px 0px 12% 0px", threshold: 0.03 },
+      {
+        rootMargin: "12% 0px 12% 0px",
+        threshold: 0.02,
+      },
     );
 
-    nodes.forEach((node) => observer.observe(node));
+    nodes.forEach((node) => {
+      if (node.classList.contains("reveal-pending")) {
+        observer.observe(node);
+      }
+    });
+
     return () => observer.disconnect();
   }, []);
 
