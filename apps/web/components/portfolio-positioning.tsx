@@ -38,10 +38,10 @@ const CAPABILITIES = [
 
 export function ImpactStrip() {
   return (
-    <section className={styles.impact} data-reveal="section" aria-label="Selected impact">
+    <section className={styles.impact} aria-label="Selected impact">
       <div className={styles.impactGrid}>
         {IMPACT.map((item) => (
-          <div className={styles.metric} data-reveal="metric" key={item.label}>
+          <div className={styles.metric} key={item.label}>
             <strong>{item.value}</strong>
             <span>{item.label}</span>
           </div>
@@ -53,9 +53,9 @@ export function ImpactStrip() {
 
 export function WorkMethod() {
   return (
-    <section className={styles.method} data-reveal="section" aria-labelledby="method-title">
+    <section className={styles.method} aria-labelledby="method-title">
       <div className="shell">
-        <header className={styles.methodHeader} data-reveal="heading">
+        <header className={styles.methodHeader}>
           <p className="section-index">03</p>
           <div>
             <p className={styles.eyebrow}>How I work</p>
@@ -70,7 +70,7 @@ export function WorkMethod() {
 
         <div className={styles.workflow}>
           {WORKFLOW.map((step, index) => (
-            <article className={styles.workflowStep} data-reveal="panel" key={step.title}>
+            <article className={styles.workflowStep} key={step.title}>
               <div className={styles.stepTop}>
                 <span>{step.index}</span>
                 <span>{index < WORKFLOW.length - 1 ? "→" : "↗"}</span>
@@ -89,10 +89,10 @@ export function WorkMethod() {
 
 export function PrivateWork() {
   return (
-    <section className={styles.privateWork} data-reveal="section" aria-labelledby="private-work-title">
+    <section className={styles.privateWork} aria-labelledby="private-work-title">
       <div className="shell">
         <p className={styles.privateIndex}>04 / Confidential systems & solutions</p>
-        <div className={styles.privateLead} data-reveal="heading">
+        <div className={styles.privateLead}>
           <h2 id="private-work-title">
             Some of my most recent work cannot live on the internet.
           </h2>
@@ -107,7 +107,7 @@ export function PrivateWork() {
 
         <div className={styles.capabilities}>
           {CAPABILITIES.map((item, index) => (
-            <div data-reveal="cell" key={item}>
+            <div key={item}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <p>{item}</p>
             </div>
@@ -127,8 +127,8 @@ export function PrivateWork() {
 
 export function CareerArc() {
   return (
-    <div className={styles.careerArc} data-reveal="section" aria-label="Career progression">
-      <article data-reveal="panel">
+    <div className={styles.careerArc} aria-label="Career progression">
+      <article>
         <p className={styles.arcMeta}>BUILD / SOFTWARE FOUNDATION</p>
         <h3>From code and implementation.</h3>
         <p>
@@ -137,7 +137,7 @@ export function CareerArc() {
         </p>
         <span>2017 · 2020—2022</span>
       </article>
-      <article data-reveal="panel">
+      <article>
         <p className={styles.arcMeta}>DESIGN / PRODUCT & UX</p>
         <h3>Into users, flows, and interfaces.</h3>
         <p>
@@ -146,7 +146,7 @@ export function CareerArc() {
         </p>
         <span>2022—2026</span>
       </article>
-      <article data-reveal="panel">
+      <article>
         <p className={styles.arcMeta}>CONSULT / SYSTEMS & SOLUTIONS</p>
         <h3>Now connecting business to systems.</h3>
         <p>
@@ -161,9 +161,9 @@ export function CareerArc() {
 
 export function TeachingStrip() {
   return (
-    <section className={styles.teaching} data-reveal="section" aria-labelledby="teaching-title">
+    <section className={styles.teaching} aria-labelledby="teaching-title">
       <div className="shell">
-        <div className={styles.teachingHeader} data-reveal="heading">
+        <div className={styles.teachingHeader}>
           <p className="section-index">06</p>
           <h2 id="teaching-title">Teaching design, too.</h2>
           <p>
@@ -172,13 +172,13 @@ export function TeachingStrip() {
           </p>
         </div>
         <div className={styles.teachingGrid}>
-          <article data-reveal="panel">
+          <article>
             <span>2024</span>
             <h3>UI/UX Design Mentor</h3>
             <p>Telkom Indonesia · Hipster Class</p>
             <strong>10+ participants</strong>
           </article>
-          <article data-reveal="panel">
+          <article>
             <span>2023—2024</span>
             <h3>Assistant UI/UX Instructor</h3>
             <p>Skill Academy by Ruangguru</p>

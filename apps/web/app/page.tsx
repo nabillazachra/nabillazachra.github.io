@@ -45,7 +45,7 @@ export default async function HomePage() {
         id="work"
         aria-labelledby="work-title"
       >
-        <header className="section-heading" data-reveal="heading">
+        <header className="section-heading">
           <p className="section-index">01</p>
           <h2 id="work-title">Selected Work</h2>
           <p>
@@ -61,12 +61,12 @@ export default async function HomePage() {
           className="section shell other-work"
           aria-labelledby="other-work-title"
         >
-          <header className="section-heading compact-heading" data-reveal="heading">
+          <header className="section-heading compact-heading">
             <p className="section-index">02</p>
             <h2 id="other-work-title">Other Work</h2>
           </header>
           {other.map((project, index) => (
-            <article className="other-work-row" data-reveal="row" key={project.slug}>
+            <article className="other-work-row" key={project.slug}>
               <div>
                 <p className="mono-label">{project.projectType}</p>
                 <h3>{project.title}</h3>
@@ -91,7 +91,7 @@ export default async function HomePage() {
       <PrivateWork />
 
       <section
-        className={`section shell about-section ${aboutStyles.polished}`} data-reveal="section"
+        className={`section shell about-section ${aboutStyles.polished}`}
         id="about"
         aria-labelledby="about-title"
       >
@@ -100,11 +100,11 @@ export default async function HomePage() {
           <h2 id="about-title">About / Experience</h2>
         </header>
         <div className="about-grid">
-          <div className="about-statement" data-reveal="fade">
+          <div className="about-statement">
             <h3>{about.heading}</h3>
             <RichText value={about.bio} />
           </div>
-          <div className="experience-list" data-reveal="fade">
+          <div className="experience-list">
             {experiences.length ? (
               experiences.map((experience) => (
                 <article
@@ -138,7 +138,7 @@ export default async function HomePage() {
       <TeachingStrip />
 
       <section
-        className="section shell playground" data-reveal="section"
+        className="section shell playground"
         aria-labelledby="playground-title"
       >
         <header className="section-heading compact-heading">
@@ -147,7 +147,7 @@ export default async function HomePage() {
           <p>Early experiments, studies, and evidence of learning in public.</p>
         </header>
         {playground.map((item) => (
-          <article className="playground-row" data-reveal="row" key={item.slug}>
+          <article className="playground-row" key={item.slug}>
             <p className="mono-label">{item.year}</p>
             <h3>{item.title}</h3>
             <div>
@@ -165,7 +165,7 @@ export default async function HomePage() {
         ))}
       </section>
 
-      <section className="contact" data-reveal="contact" id="contact" aria-labelledby="contact-title">
+      <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="shell contact-grid">
           <p className="section-index">08 / Contact</p>
           <h2 id="contact-title">Have a complex problem to make clearer?</h2>

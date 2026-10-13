@@ -7,7 +7,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
   return (
     <div className="project-list">
       {projects.map((project, index) => (
-        <article className="project-row" data-reveal="project" key={project.slug}>
+        <article className="project-row" key={project.slug}>
           <div className="project-number" aria-hidden="true">
             {String(index + 1).padStart(2, "0")}
           </div>
