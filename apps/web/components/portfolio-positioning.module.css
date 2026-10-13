@@ -687,6 +687,7 @@
 }
 
 .careerMobile {
+  grid-column: 1 / -1;
   width: 100%;
   margin-top: 3rem;
   color: var(--ink);
