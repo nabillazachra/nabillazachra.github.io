@@ -10,15 +10,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Nabilla Zachra — Product & Experience Designer",
+    default: "Nabilla Zachra — Technical Consultant & Product Designer",
     template: "%s — Nabilla Zachra",
   },
   description:
-    "Nabilla Zachra is a Product & Experience Designer working across research, product thinking, and interface craft.",
+    "Nabilla Zachra is a Technical Consultant and Product Designer working across business requirements, system analysis, user experience, and interface design.",
   openGraph: {
     title: "Nabilla Zachra — Product & Experience Designer",
     description:
-      "Research, product thinking, and interface craft—grounded in technical understanding.",
+      "Business requirements, system analysis, product thinking, and user experience—connected through technical understanding.",
     type: "website",
     url: siteUrl,
   },
