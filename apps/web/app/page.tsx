@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { ExternalLink } from "@/components/external-link";
@@ -5,6 +6,7 @@ import { ProjectArtwork } from "@/components/project-artwork";
 import { ProjectList } from "@/components/project-list";
 import { RichText } from "@/components/rich-text";
 import { getHomeContent } from "@/lib/content/get-content";
+import { ABOUT_PORTRAIT_DATA } from "@/lib/about-portrait-data";
 import aboutStyles from "./about-section.module.css";
 import { CareerArc, ImpactStrip, PrivateWork, TeachingStrip, WorkMethod } from "@/components/portfolio-positioning";
 
@@ -101,6 +103,18 @@ export default async function HomePage() {
         </header>
         <div className="about-grid">
           <div className="about-statement">
+            <figure className={aboutStyles.aboutPortrait}>
+              <div className={aboutStyles.portraitFrame}>
+                <Image
+                  alt="Nabilla Zachra"
+                  height={525}
+                  src={`data:image/webp;base64,${ABOUT_PORTRAIT_DATA}`}
+                  unoptimized
+                  width={420}
+                />
+              </div>
+              <figcaption>Nabilla Zachra / Indonesia</figcaption>
+            </figure>
             <h3>{about.heading}</h3>
             <RichText value={about.bio} />
           </div>
