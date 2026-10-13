@@ -26,7 +26,7 @@ if (!(await mobile.getByText("Requirements", { exact: true }).last().isVisible()
 }
 
 await capabilities.locator("summary").click();
-if (!(await mobile.getByText("Requirements & system analysis", { exact: true }).isVisible())) {
+if (!(await mobile.getByText("Requirements & system analysis", { exact: true }).last().isVisible())) {
   throw new Error("Capabilities detail did not open");
 }
 
