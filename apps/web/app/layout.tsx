@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { MotionObserver } from "@/components/motion-observer";
 
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
+        <MotionObserver />
         <SiteHeader />
         {children}
         <SiteFooter />
