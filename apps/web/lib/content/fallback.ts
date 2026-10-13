@@ -696,10 +696,10 @@ export const about: About = {
 };
 
 export const settings: SiteSettings = {
-  title: "Nabilla Zachra — Product & Experience Designer",
+  title: "Nabilla Zachra — Technical Consultant & Product Designer",
   description:
-    "Portfolio of Nabilla Zachra, a Product & Experience Designer working across research, product systems, interface design, and technical problem solving.",
-  email: "",
+    "Portfolio of Nabilla Zachra, a Technical Consultant and Product Designer working across business analysis, systems, UX, and technical problem solving.",
+  email: "nabillazachra14@gmail.com",
   location: "Indonesia",
   socialLinks: [
     {
