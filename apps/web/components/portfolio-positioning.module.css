@@ -398,6 +398,15 @@
 }
 
 @media (max-width: 700px) {
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .mobileAccordion,
+  .capabilityDisclosure {
+    display: block;
+  }
+
   .impactGrid,
   .workflow,
   .teachingGrid {
@@ -410,6 +419,28 @@
     min-height: 11rem;
     border-right: 1px solid rgb(255 248 234 / 45%);
     border-bottom: 1px solid rgb(255 248 234 / 45%);
+  }
+
+  .method {
+    padding: 3.25rem 0;
+  }
+
+  .methodHeader {
+    padding-bottom: 2rem;
+  }
+
+  .methodHeader h2 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .privateWork {
+    padding: 3.25rem 0;
+  }
+
+  .privateLead h2 {
+    font-size: clamp(2.55rem, 11vw, 3.8rem);
+    line-height: 0.95;
   }
 
   .methodHeader,
@@ -435,21 +466,6 @@
     margin-top: 1.5rem;
   }
 
-  .workflowStep {
-    min-height: auto;
-    padding: 1.5rem 0 2.5rem;
-    border-right: 0;
-    border-bottom: 1px solid #55554e;
-  }
-
-  .workflowStep:last-child {
-    border-bottom: 0;
-  }
-
-  .workflowStep h3 {
-    margin-top: 3rem;
-  }
-
   .privateLead h2,
   .privateLead p {
     grid-column: 1 / -1;
@@ -459,15 +475,13 @@
     margin-top: 2rem;
   }
 
-  .capabilities {
-    grid-template-columns: 1fr;
+  .capabilityDisclosure {
+    margin-top: 2rem;
+    border-color: #55554e;
   }
 
-  .capabilities > div,
-  .capabilities > div:nth-child(2n),
-  .capabilities > div:nth-child(4n) {
-    min-height: auto;
-    border-right: 0;
+  .capabilityDisclosure:last-of-type {
+    border-bottom: 1px solid #55554e;
   }
 
   .teachingGrid article,
@@ -549,4 +563,140 @@
 .privateCta:focus-visible {
   color: var(--signal);
   transform: translateX(8px);
+}
+
+
+/* Mobile density: details stay native and content-safe. */
+.mobileAccordion,
+.capabilityDisclosure {
+  display: none;
+}
+
+.mobileDisclosure {
+  border-top: 1px solid currentColor;
+}
+
+.mobileDisclosure:last-child {
+  border-bottom: 1px solid currentColor;
+}
+
+.mobileDisclosure summary {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr) 1.5rem;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mobileDisclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobileDisclosure summary > span {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.mobileDisclosure summary strong {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.mobileDisclosure summary i {
+  justify-self: end;
+  color: var(--signal);
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 300;
+  transition: transform 220ms var(--ease-editorial);
+}
+
+.mobileDisclosure[open] summary i {
+  transform: rotate(45deg);
+}
+
+.mobileDisclosureBody {
+  padding: 0 0 1.25rem min(6.25rem, 22vw);
+  animation: mobile-detail-in 220ms var(--ease-editorial);
+}
+
+.mobileDisclosureBody ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileDisclosureBody li {
+  padding: 0.6rem 0;
+  border-top: 1px solid currentColor;
+  color: #bbb8ae;
+  font-size: 0.82rem;
+}
+
+.mobileDisclosureBody h3 {
+  max-width: 18rem;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.mobileDisclosureBody p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.capabilityList {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 0 1rem;
+}
+
+.capabilityList > div {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid #55554e;
+}
+
+.capabilityList span {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+}
+
+.capabilityList p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.careerMobile {
+  width: 100%;
+  margin-top: 3rem;
+  color: var(--ink);
+}
+
+@keyframes mobile-detail-in {
+  from {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
