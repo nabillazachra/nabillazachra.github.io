@@ -626,19 +626,43 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     organisation: "PT Nutech Integrasi (Telkom Indonesia Group)",
-    role: "UX/UI Designer",
-    period: "Mar 2022 — Present",
+    role: "Jr Technical Consultant (System Analyst)",
+    period: "Mar 2026 — Present",
     summary:
-      "Designing user-centered digital products in cross-functional environments, connecting interface design and UX research with business requirements and technical feasibility across complex IT and transportation-oriented solutions.",
+      "Analysing business and technical requirements, translating them into solution scope, functional specifications, system flows, compliance mapping, technical recommendations, and implementation inputs for enterprise and transportation-oriented opportunities.",
     order: 1,
+  },
+  {
+    organisation: "PT Nutech Integrasi (Telkom Indonesia Group)",
+    role: "UX/UI Designer",
+    period: "Mar 2022 — Mar 2026",
+    summary:
+      "Led end-to-end UX/UI work across enterprise products, design systems, web, mobile, tablet, kiosk, and self-service interfaces—from research and flows through prototyping, usability testing, and final interface design.",
+    order: 2,
+  },
+  {
+    organisation: "Telkom Indonesia · Hipster Class",
+    role: "UI/UX Design Mentor",
+    period: "Jun 2024 — Oct 2024",
+    summary:
+      "Mentored 10+ participants across UX fundamentals, design thinking, flows, wireframing, prototyping, and interface design.",
+    order: 3,
+  },
+  {
+    organisation: "Skill Academy by Ruangguru",
+    role: "Assistant UI/UX Instructor",
+    period: "Jun 2023 — Oct 2024",
+    summary:
+      "Supported UI/UX learning for 5,000+ students through interactive sessions, practical guidance, assignment reviews, and structured design feedback.",
+    order: 4,
   },
   {
     organisation: "PT Galeri Teknologi Bersama",
     role: "Web Developer",
     period: "Dec 2021 — Feb 2022",
     summary:
-      "Worked on web development before moving deeper into UX/UI, building the technical foundation that still shapes how I think about implementation constraints and collaboration with engineering.",
-    order: 2,
+      "Developed and maintained web application features, handled bug fixing and quality checks, and built the implementation foundation that still shapes how I work with engineering constraints.",
+    order: 5,
   },
 ];
 
@@ -656,26 +680,26 @@ export const playground: PlaygroundItem[] = [
 
 export const about: About = {
   heading:
-    "I move between research, product systems, interface design, and the technical realities underneath them.",
+    "I work where business requirements, system logic, and user experience meet.",
   bio: [
     block(
-      "My background spans UX/UI design and web development. That mix helps me work from both sides of a product problem: understanding people and workflows, then asking how the rules, data, integrations, and implementation constraints shape the experience we can responsibly build.",
+      "My career moved from web development into product and UX design, and now into technical consulting and system analysis. That progression lets me look at a product from multiple layers: business requirements, system behaviour, implementation constraints, and the experience people ultimately interact with.",
       "about-bio-1",
     ),
     block(
-      "I am most useful on products where the interface is only one layer of the problem—work that needs research, structured flows, stakeholder translation, and enough technical fluency to keep design decisions grounded.",
+      "I am most useful when the interface is only one layer of the problem—work that needs requirements analysis, structured flows, stakeholder translation, technical evaluation, research, and enough product judgement to make complexity understandable.",
       "about-bio-2",
     ),
   ],
   availability:
-    "Open to product, UX, and experience-design opportunities where systems thinking matters.",
+    "Open to technical consulting, system analysis, product, and UX opportunities where business, systems, and experience need to connect.",
 };
 
 export const settings: SiteSettings = {
-  title: "Nabilla Zachra — Product & Experience Designer",
+  title: "Nabilla Zachra — Technical Consultant & Product Designer",
   description:
-    "Portfolio of Nabilla Zachra, a Product & Experience Designer working across research, product systems, interface design, and technical problem solving.",
-  email: "",
+    "Portfolio of Nabilla Zachra, a Technical Consultant and Product Designer working across business analysis, systems, UX, and technical problem solving.",
+  email: "nabillazachra14@gmail.com",
   location: "Indonesia",
   socialLinks: [
     {
