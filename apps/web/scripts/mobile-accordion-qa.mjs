@@ -35,7 +35,10 @@ const experienceText = experience.locator("p").last();
 if (!(await experienceText.isVisible())) throw new Error("Experience detail did not open");
 
 await career.locator("summary").click();
-if (!(await mobile.getByText("From code and implementation.", { exact: true }).last().isVisible())) {
+if (!(await career.evaluate((el) => el.open))) {
+  throw new Error("Career disclosure did not enter open state");
+}
+if (!(await career.locator("h3").isVisible())) {
   throw new Error("Career detail did not open");
 }
 
