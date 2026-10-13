@@ -6,6 +6,7 @@ import { ProjectList } from "@/components/project-list";
 import { RichText } from "@/components/rich-text";
 import { getHomeContent } from "@/lib/content/get-content";
 import aboutStyles from "./about-section.module.css";
+import { CareerArc, ImpactStrip, PrivateWork, TeachingStrip, WorkMethod } from "@/components/portfolio-positioning";
 
 export default async function HomePage() {
   const { projects, experiences, playground, about, settings } =
@@ -18,24 +19,26 @@ export default async function HomePage() {
       <section className="hero shell" aria-labelledby="hero-title">
         <div className="hero-kicker reveal">
           <span aria-hidden="true">●</span>
-          <p>Independent portfolio / Selected work</p>
+          <p>Technical consultant × product designer</p>
         </div>
         <h1 className="reveal reveal-delay" id="hero-title">
-          I design products
+          I turn complex systems
           <br />
-          for <em>real people.</em>
+          into <em>clear products.</em>
         </h1>
         <p className="hero-intro reveal reveal-delay-2">
-          Product &amp; Experience Designer connecting <strong>research</strong>
-          , product thinking, and interface craft—with a technical background
-          that keeps ideas grounded in how things work.
+          I bridge <strong>business requirements</strong>, system logic,
+          technical feasibility, and user experience—from analysis and flows
+          to interfaces and implementation conversations.
         </p>
         <div className="hero-foot reveal reveal-delay-2">
           <p>Based in {settings.location || "Indonesia"}</p>
           <a href="#work">View selected work ↓</a>
-          <p className="hero-coordinate">Research / Systems / Interface</p>
+          <p className="hero-coordinate">Business / Systems / Experience</p>
         </div>
       </section>
+
+      <ImpactStrip />
 
       <section
         className="section shell selected-work"
@@ -83,28 +86,9 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="section thinking" aria-labelledby="thinking-title">
-        <div className="shell thinking-grid">
-          <header className="section-heading inverse-heading">
-            <p className="section-index">03</p>
-            <h2 id="thinking-title">How I Think</h2>
-          </header>
-          <p className="thinking-lead">
-            Good product work makes the reasoning visible. It shows what we
-            know, what we do not, and why one direction is more useful than
-            another.
-          </p>
-          <ol className="principles">
-            {settings.approach.map((principle, index) => (
-              <li key={principle._key}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{principle.title}</h3>
-                <p>{principle.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <WorkMethod />
+
+      <PrivateWork />
 
       <section
         className={`section shell about-section ${aboutStyles.polished}`}
@@ -147,15 +131,18 @@ export default async function HomePage() {
               <p className="availability">{about.availability}</p>
             ) : null}
           </div>
+          <CareerArc />
         </div>
       </section>
+
+      <TeachingStrip />
 
       <section
         className="section shell playground"
         aria-labelledby="playground-title"
       >
         <header className="section-heading compact-heading">
-          <p className="section-index">05</p>
+          <p className="section-index">07</p>
           <h2 id="playground-title">Playground</h2>
           <p>Early experiments, studies, and evidence of learning in public.</p>
         </header>
@@ -180,7 +167,7 @@ export default async function HomePage() {
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="shell contact-grid">
-          <p className="section-index">06 / Contact</p>
+          <p className="section-index">08 / Contact</p>
           <h2 id="contact-title">Have a useful problem to untangle?</h2>
           <p>
             I am interested in product questions where research, systems
