@@ -146,7 +146,7 @@
 }
 
 .privateWork {
-  padding: clamp(6rem, 11vw, 11rem) 0;
+  padding: clamp(4.5rem, 7vw, 7.5rem) 0;
   background: #23231f;
   color: var(--ivory);
 }
