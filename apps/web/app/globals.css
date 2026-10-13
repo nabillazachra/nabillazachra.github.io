@@ -560,7 +560,7 @@ dd {
 
 .principles {
   grid-column: 5 / -1;
-  margin: clamp(4rem, 8vw, 8rem) 0 0;
+  margin: clamp(3rem, 5vw, 5rem) 0 0;
   padding: 0;
   list-style: none;
 }
