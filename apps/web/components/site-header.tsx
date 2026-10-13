@@ -7,7 +7,7 @@ export function SiteHeader() {
         <span>Nabilla</span>
         <span>Zachra</span>
       </Link>
-      <p className="header-role">Product &amp; Experience Designer</p>
+      <p className="header-role">Technical Consultant × Product Designer</p>
       <nav aria-label="Primary navigation">
         <Link href="/#work">Work</Link>
         <Link href="/#about">About</Link>
