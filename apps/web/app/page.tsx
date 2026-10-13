@@ -96,7 +96,7 @@ export default async function HomePage() {
         aria-labelledby="about-title"
       >
         <header className="section-heading compact-heading">
-          <p className="section-index">04</p>
+          <p className="section-index">05</p>
           <h2 id="about-title">About / Experience</h2>
         </header>
         <div className="about-grid">
@@ -168,10 +168,10 @@ export default async function HomePage() {
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="shell contact-grid">
           <p className="section-index">08 / Contact</p>
-          <h2 id="contact-title">Have a useful problem to untangle?</h2>
+          <h2 id="contact-title">Have a complex problem to make clearer?</h2>
           <p>
-            I am interested in product questions where research, systems
-            thinking, and careful interface work need to meet.
+            I am interested in work where business requirements, systems thinking,
+            technical feasibility, and user experience need to meet.
           </p>
           <div className="contact-links">
             {settings.email ? (
