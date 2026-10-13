@@ -38,26 +38,6 @@ await career.locator("summary").click();
 if (!(await career.evaluate((el) => el.open))) {
   throw new Error("Career disclosure did not enter open state");
 }
-const careerDebug = await career.locator("h3").evaluate((element) => {
-  const chain = [];
-  let node = element;
-  while (node) {
-    const style = getComputedStyle(node);
-    const rect = node.getBoundingClientRect();
-    chain.push({
-      tag: node.tagName,
-      className: String(node.className || ""),
-      display: style.display,
-      visibility: style.visibility,
-      opacity: style.opacity,
-      width: rect.width,
-      height: rect.height,
-    });
-    node = node.parentElement;
-  }
-  return chain;
-});
-console.log("CAREER_DEBUG", JSON.stringify(careerDebug));
 if (!(await career.locator("h3").isVisible())) {
   throw new Error("Career detail did not open");
 }
@@ -70,8 +50,7 @@ await desktop.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
 const desktopDetails = desktop.locator("details");
 const detailsCount = await desktopDetails.count();
 for (let i = 0; i < detailsCount; i += 1) {
-  const display = await desktopDetails.nth(i).evaluate((el) => getComputedStyle(el).display);
-  if (display !== "none") {
+  if (await desktopDetails.nth(i).isVisible()) {
     throw new Error("Mobile accordion leaked into desktop layout");
   }
 }
