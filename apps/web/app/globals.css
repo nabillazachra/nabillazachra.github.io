@@ -1599,3 +1599,23 @@ dd {
     animation: none !important;
   }
 }
+
+
+/* Tighten the handoff from impact metrics into selected work. */
+.selected-work {
+  padding-top: clamp(3.25rem, 5vw, 5.5rem);
+}
+
+.selected-work .section-heading {
+  padding-bottom: clamp(2.75rem, 4.5vw, 4.5rem);
+}
+
+@media (max-width: 700px) {
+  .selected-work {
+    padding-top: 3rem;
+  }
+
+  .selected-work .section-heading {
+    padding-bottom: 2.5rem;
+  }
+}
