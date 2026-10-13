@@ -151,12 +151,22 @@
 }
 
 .polished :global(.availability) {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1rem;
   margin: clamp(2rem, 3vw, 3rem) 0 0;
   padding: 1.2rem 0 0;
+  border: 0;
+}
+
+.polished :global(.availability)::before {
+  grid-column: 3 / -1;
+  grid-row: 1;
+  align-self: start;
   border-top: 1px solid var(--signal);
+  content: "";
+  transform: translateY(-1.2rem);
 }
 
 .polished :global(.availability .mono-label) {
@@ -323,6 +333,12 @@
   .polished :global(.availability) {
     display: block;
     margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--signal);
+  }
+
+  .polished :global(.availability)::before {
+    display: none;
   }
 
   .polished :global(.availability .mono-label) {
