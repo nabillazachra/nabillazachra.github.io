@@ -21,3 +21,22 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - name: Install runtime QA tools
+        run: |
+          npm install --no-save playwright@1.55.0 serve@14
+          npx playwright install --with-deps chromium
+      - name: Verify content remains visible after hydration
+        run: |
+          npx serve apps/web/out -l 4173 > /tmp/portfolio-serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          node apps/web/scripts/runtime-visibility-qa.mjs
+      - name: Upload runtime QA screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-visibility-qa
+          path: /tmp/portfolio-runtime-visibility.png
