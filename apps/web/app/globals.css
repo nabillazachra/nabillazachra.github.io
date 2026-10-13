@@ -641,15 +641,6 @@ dd {
   font-size: 0.9rem;
 }
 
-.availability {
-  margin-top: 3rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--signal);
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  line-height: 1.2;
-}
-
 .playground-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
