@@ -1534,14 +1534,6 @@ dd {
   }
 }
 
-  .site-header,
-  .hero h1.reveal,
-  .hero h1.reveal em,
-  .hero-kicker span {
-    animation: none !important;
-  }
-}
-
 
 /* Tight handoff from impact metrics into selected work. */
 .selected-work {
