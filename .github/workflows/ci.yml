@@ -21,3 +21,25 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - name: Install refinement QA tools
+        run: |
+          npm install --no-save playwright@1.55.0 serve@14
+          npx playwright install --with-deps chromium
+      - name: Verify role, counters, and alternating work layout
+        run: |
+          npx serve apps/web/out -l 4173 > /tmp/portfolio-serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          node apps/web/scripts/refinement-qa.mjs
+      - name: Upload refinement screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: refinement-qa
+          path: |
+            /tmp/selected-work-desktop.png
+            /tmp/impact-counter-desktop.png
+            /tmp/selected-work-mobile.png
