@@ -81,16 +81,16 @@ dd {
 .skip-link {
   position: fixed;
   z-index: 100;
-  top: 0;
+  top: -4rem;
   left: var(--page);
   padding: 0.7rem 1rem;
   background: var(--ink);
   color: var(--ivory);
-  transform: translateY(-120%);
+  transition: top 180ms var(--ease-soft);
 }
 
 .skip-link:focus {
-  transform: translateY(0);
+  top: 0;
 }
 
 .site-header {
