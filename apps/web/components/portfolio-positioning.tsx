@@ -27,14 +27,62 @@ const WORKFLOW = [
 ];
 
 const CAPABILITIES = [
-  "Requirements & system analysis",
-  "Solution design",
-  "Functional specifications",
-  "Process & system flows",
-  "Technical evaluation",
-  "Compliance mapping",
-  "Presales documentation",
-  "Stakeholder & vendor coordination",
+  {
+    index: "01",
+    phase: "Discover",
+    title: "Requirements & system analysis",
+    artifacts: ["Requirement notes", "Gap mapping"],
+    detail: "Clarify business needs, constraints, dependencies, and system implications before defining the solution.",
+  },
+  {
+    index: "02",
+    phase: "Architect",
+    title: "Solution design",
+    artifacts: ["Solution scope", "Component mapping"],
+    detail: "Shape the solution structure and connect business needs to a technically feasible system approach.",
+  },
+  {
+    index: "03",
+    phase: "Architect",
+    title: "Functional specifications",
+    artifacts: ["Functional requirements", "Business rules"],
+    detail: "Translate requirements into clear system behaviour that can be reviewed, estimated, and implemented.",
+  },
+  {
+    index: "04",
+    phase: "Architect",
+    title: "Process & system flows",
+    artifacts: ["Process flow", "System flow"],
+    detail: "Make interactions, handoffs, dependencies, and expected system behaviour visible before implementation.",
+  },
+  {
+    index: "05",
+    phase: "Validate",
+    title: "Technical evaluation",
+    artifacts: ["Comparison", "Recommendation"],
+    detail: "Compare technical options against requirements, interoperability, implementation constraints, and fit.",
+  },
+  {
+    index: "06",
+    phase: "Validate",
+    title: "Compliance mapping",
+    artifacts: ["Compliance matrix", "Gap evidence"],
+    detail: "Trace requirements against proposed solutions and surface gaps, assumptions, or clarifications early.",
+  },
+  {
+    index: "07",
+    phase: "Deliver",
+    title: "Presales documentation",
+    artifacts: ["BoQ", "SoW", "Technical proposal"],
+    detail: "Structure technical inputs into documentation that supports estimation, procurement, and delivery alignment.",
+  },
+  {
+    index: "08",
+    phase: "Deliver",
+    title: "Stakeholder & vendor coordination",
+    artifacts: ["Clarification", "Alignment", "Follow-up"],
+    detail: "Keep business, internal teams, and vendors aligned around requirements, decisions, and technical dependencies.",
+  },
 ];
 
 export function ImpactStrip() {
@@ -137,30 +185,76 @@ export function PrivateWork() {
           </p>
         </div>
 
-        <div className={`${styles.capabilities} ${styles.desktopOnly}`}>
-          {CAPABILITIES.map((item, index) => (
-            <div key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <p>{item}</p>
-            </div>
-          ))}
-        </div>
+        <div className={`${styles.capabilityMap} ${styles.desktopOnly}`}>
+          <div className={styles.phaseRail} aria-hidden="true">
+            <span>Discover</span>
+            <span>Architect</span>
+            <span>Validate</span>
+            <span>Deliver</span>
+          </div>
 
-        <details className={`${styles.mobileDisclosure} ${styles.capabilityDisclosure}`}>
-          <summary>
-            <span>08 capabilities</span>
-            <strong>View capabilities</strong>
-            <i aria-hidden="true">+</i>
-          </summary>
-          <div className={styles.capabilityList}>
-            {CAPABILITIES.map((item, index) => (
-              <div key={item}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{item}</p>
-              </div>
+          <div className={styles.systemSpine} aria-hidden="true">
+            <span>From requirement</span>
+            <i />
+            <strong>02 / Solution design</strong>
+            <i />
+            <span>To implementation</span>
+          </div>
+
+          <div className={styles.capabilityNodes}>
+            {CAPABILITIES.map((item) => (
+              <article
+                className={`${styles.capabilityNode} ${item.index === "02" ? styles.capabilityCore : ""}`}
+                data-capability={item.index}
+                key={item.index}
+                tabIndex={0}
+              >
+                <div className={styles.capabilityNodeTop}>
+                  <span>{item.index}</span>
+                  <span>{item.phase}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <div className={styles.artifactTags}>
+                  {item.artifacts.map((artifact) => (
+                    <span key={artifact}>{artifact}</span>
+                  ))}
+                </div>
+                <div className={styles.capabilityDetail}>
+                  <span>Role / output</span>
+                  <p>{item.detail}</p>
+                </div>
+              </article>
             ))}
           </div>
-        </details>
+
+          <p className={styles.systemCaption} aria-hidden="true">
+            Systems / Solutions / Delivery
+          </p>
+        </div>
+
+        <div className={`${styles.capabilityTimeline} ${styles.mobileAccordion}`}>
+          <p className={styles.timelineLabel}>Technical solution workflow</p>
+          {CAPABILITIES.map((item) => (
+            <details className={styles.timelineItem} key={item.index}>
+              <summary>
+                <span className={styles.timelineIndex}>{item.index}</span>
+                <span className={styles.timelineTitle}>
+                  <small>{item.phase}</small>
+                  <strong>{item.title}</strong>
+                </span>
+                <i aria-hidden="true">+</i>
+              </summary>
+              <div className={styles.timelineBody}>
+                <p>{item.detail}</p>
+                <div className={styles.timelineArtifacts}>
+                  {item.artifacts.map((artifact) => (
+                    <span key={artifact}>{artifact}</span>
+                  ))}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
 
         <div className={styles.privateFooter}>
           <span className={styles.privateStamp}>Portfolio / Restricted view</span>
