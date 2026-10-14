@@ -1,39 +1,82 @@
+.polished {
+  position: relative;
+  overflow: clip;
+}
+
+.polished::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(22 22 19 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(22 22 19 / 2.5%) 1px, transparent 1px);
+  background-size: 8.333% 100%, 100% 4.5rem;
+  content: "";
+  pointer-events: none;
+}
+
 .polished :global(.section-heading.compact-heading) {
+  position: relative;
   padding-bottom: clamp(1.75rem, 2.8vw, 2.75rem);
 }
 
-.polished :global(.about-grid) {
-  align-items: start;
-  padding-top: clamp(2rem, 3.5vw, 3.5rem);
+.polished :global(.section-heading.compact-heading)::after {
+  position: absolute;
+  right: 0;
+  bottom: 1.25rem;
+  width: clamp(5rem, 10vw, 10rem);
+  height: 2px;
+  background: var(--signal);
+  content: "";
 }
 
-/* Profile: one full-width editorial row. */
-.polished :global(.about-statement) {
-  grid-column: 1 / -1;
+/* -------------------------------------------------------------------------- */
+/* Editorial profile spread                                                   */
+/* -------------------------------------------------------------------------- */
+
+.profileSpread {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1rem;
-  padding: 0 0 clamp(3.5rem, 5vw, 5rem);
+  padding: clamp(2rem, 3.5vw, 3.5rem) 0 clamp(4rem, 6vw, 6rem);
+  border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
 
-.polished :global(.about-statement)::before {
+.aboutWatermark {
+  position: absolute;
+  z-index: 0;
+  top: 0.02em;
+  right: -0.04em;
+  color: rgb(22 22 19 / 4.5%);
+  font-family: var(--serif);
+  font-size: clamp(12rem, 25vw, 25rem);
+  font-weight: 400;
+  letter-spacing: -0.09em;
+  line-height: 0.72;
+  pointer-events: none;
+  user-select: none;
+}
+
+.profileEyebrow {
+  position: relative;
+  z-index: 2;
   grid-column: 1 / span 2;
-  padding-top: 0.45rem;
   color: var(--signal);
-  content: "Profile";
   font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.075em;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .aboutPortrait {
-  grid-column: 1 / span 3;
-  grid-row: 2;
-  width: 100%;
-  max-width: 22rem;
-  margin: 0;
+  position: relative;
+  z-index: 2;
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 3;
+  width: min(100%, 26rem);
+  margin: clamp(1rem, 2vw, 2rem) 0 0;
 }
 
 .portraitFrame {
@@ -43,11 +86,39 @@
   background: #dfddd5;
 }
 
+.portraitFrame::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(255 255 255 / 28%);
+  content: "";
+  pointer-events: none;
+}
+
 .portraitFrame img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.015);
+  transition: transform 800ms var(--ease-editorial);
+}
+
+.aboutPortrait:hover .portraitFrame img {
+  transform: scale(1.045);
+}
+
+.portraitIndex {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  padding: 0.38rem 0.48rem;
+  border: 1px solid rgb(255 255 255 / 55%);
+  background: rgb(22 22 19 / 76%);
+  color: #fff8ea;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
 .aboutPortrait figcaption {
@@ -59,470 +130,783 @@
   border-top: 1px solid var(--signal);
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   letter-spacing: 0.06em;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
-.polished :global(.about-statement h3) {
-  grid-column: 4 / span 4;
+.profileHeadline {
+  position: relative;
+  z-index: 2;
+  grid-column: 5 / span 4;
   grid-row: 2;
-  max-width: 10ch;
-  font-size: clamp(2.8rem, 4.2vw, 4.7rem);
-  line-height: 0.96;
+  align-self: start;
+  margin-top: clamp(1rem, 2vw, 2rem);
 }
 
-.polished :global(.about-statement .rich-text) {
+.profileHeadline h3 {
+  max-width: 9.5ch;
+  font-family: var(--serif);
+  font-size: clamp(3.4rem, 5vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.91;
+  text-wrap: balance;
+}
+
+.profileHeadline h3::after {
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  margin-top: 1.4rem;
+  background: var(--signal);
+  content: "";
+}
+
+.pullQuote {
+  position: relative;
+  z-index: 2;
   grid-column: 9 / -1;
   grid-row: 2;
-  display: grid;
   align-self: end;
-  gap: 1rem;
-  width: 100%;
-  max-width: 35rem;
-  margin: 0;
+  margin: clamp(1rem, 2vw, 2rem) 0 0;
+  padding: 1.1rem 0 1.1rem 1.2rem;
+  border-left: 2px solid var(--signal);
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.2vw, 2.35rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.profileBio {
+  position: relative;
+  z-index: 2;
+  grid-column: 5 / span 4;
+  grid-row: 3;
+  align-self: start;
+  max-width: 39rem;
+  margin-top: 1.6rem;
   color: #4c4942;
-  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  font-size: clamp(0.92rem, 1vw, 1.02rem);
   line-height: 1.68;
 }
 
-.polished :global(.about-statement .rich-text > * + *) {
+.profileBio :global(.rich-text) {
+  display: grid;
+  gap: 1rem;
+}
+
+.profileBio :global(.rich-text > * + *) {
   margin-top: 0;
 }
 
-/* Experience: full-width, scan-friendly rows. */
-.polished :global(.experience-list) {
-  grid-column: 1 / -1;
-  margin-top: clamp(3rem, 4.5vw, 4.5rem);
-  padding-top: 0;
+.profileAnnotations {
+  position: relative;
+  z-index: 2;
+  grid-column: 9 / -1;
+  grid-row: 3;
+  align-self: start;
+  display: grid;
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--line);
 }
 
-.polished :global(.experience-list)::before {
-  display: block;
-  margin-bottom: 1rem;
+.profileAnnotations > div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.profileAnnotations span {
   color: var(--signal);
-  content: "Experience";
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: 0.54rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.profileAnnotations strong {
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Working principles                                                         */
+/* -------------------------------------------------------------------------- */
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 5vw, 5rem);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.principles article {
+  position: relative;
+  min-height: 16rem;
+  padding: 1.2rem 1.35rem 1.5rem;
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  transition:
+    background-color 300ms ease,
+    transform 420ms var(--ease-editorial);
+}
+
+.principles article:last-child {
+  border-right: 0;
+}
+
+.principles article::after {
+  position: absolute;
+  right: -0.08em;
+  bottom: -0.18em;
+  color: rgb(22 22 19 / 4%);
+  content: attr(data-index);
+  font-family: var(--serif);
+  font-size: 9rem;
+  line-height: 0.8;
+  pointer-events: none;
+}
+
+.principles article:hover {
+  background: rgb(240 75 35 / 5%);
+  transform: translateY(-3px);
+}
+
+.principles article > span {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+}
+
+.principles h3 {
+  margin-top: clamp(3.4rem, 5vw, 5rem);
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 4vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.principles p {
+  max-width: 24rem;
+  margin-top: 1.1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Availability status                                                        */
+/* -------------------------------------------------------------------------- */
+
+.availabilityStrip {
+  display: grid;
+  grid-template-columns: 3fr 5fr 4fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: clamp(3rem, 5vw, 5rem);
+  padding: 1.15rem 1.25rem;
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.availabilityStatus {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.availabilityStatus > span {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 5px rgb(240 75 35 / 10%);
+  animation: availability-pulse 2.8s ease-in-out infinite;
+}
+
+.availabilityStatus strong {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.065em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.availabilityStrip > p {
+  color: #bbb8ae;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.availabilityTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  justify-content: flex-end;
+}
+
+.availabilityTags span {
+  padding: 0.34rem 0.48rem;
+  border: 1px solid #55554e;
+  color: #d4d0c5;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+@keyframes availability-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.72);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Career timeline                                                            */
+/* -------------------------------------------------------------------------- */
+
+.careerSection {
+  margin-top: clamp(4rem, 7vw, 7rem);
+}
+
+.careerHeading {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: end;
+  padding-bottom: clamp(2rem, 3.5vw, 3.25rem);
+  border-bottom: 1px solid var(--ink);
+}
+
+.careerHeading > p {
+  grid-column: 1 / span 2;
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 0.6rem;
   letter-spacing: 0.075em;
   text-transform: uppercase;
 }
 
-.polished :global(.experience-list article),
-.polished :global(.experience-empty) {
+.careerHeading h3 {
+  grid-column: 3 / span 6;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.2vw, 5.4rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.careerHeading > span {
+  grid-column: 11 / -1;
+  justify-self: end;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.careerDesktop {
+  display: block;
+}
+
+.careerTrack {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 1rem 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.careerTrack i {
+  position: relative;
+  height: 1px;
+  background: var(--line);
+}
+
+.careerTrack i::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--signal);
+  border-radius: 50%;
+  background: var(--paper);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.careerEvents {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.careerEvents::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(16.666% - 0.5rem);
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--signal) 0%,
+    var(--line) 24%,
+    var(--line) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.careerEvents article {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 0.7rem 1rem;
-  padding: clamp(1.35rem, 2vw, 1.9rem) 0;
-  border-top: 1px solid var(--line);
+  grid-template-columns: 2fr 4fr 6fr;
+  gap: 1rem;
+  min-height: 9rem;
+  padding: 1.35rem 1rem 1.55rem 0;
+  border-bottom: 1px solid var(--line);
   transition:
-    background-color 220ms ease,
-    border-color 220ms ease;
+    background-color 260ms ease,
+    transform 360ms var(--ease-editorial);
 }
 
-.polished :global(.experience-list article:last-of-type) {
-  border-bottom: 1px solid var(--ink);
-}
-
-.polished :global(.experience-list article:hover) {
-  padding-left: 0;
-  border-color: var(--ink);
-  background: rgb(240 75 35 / 3.5%);
-}
-
-.polished :global(.experience-list article::before) {
+.careerEvents article::before {
   position: absolute;
-  top: -1px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--signal);
+  top: 1.55rem;
+  left: calc(16.666% - 0.75rem);
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--signal);
+  border-radius: 50%;
+  background: var(--paper);
   content: "";
-  transition: width 320ms var(--ease-editorial);
+  transform: translateX(-50%);
+  transition: transform 240ms var(--ease-editorial);
 }
 
-.polished :global(.experience-list article:hover::before) {
-  width: clamp(2rem, 4vw, 4rem);
+.careerEvents article:hover {
+  background: rgb(240 75 35 / 4%);
 }
 
-.polished :global(.experience-list article .mono-label) {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 2;
-  padding-top: 0.15rem;
+.careerEvents article:hover::before {
+  transform: translateX(-50%) scale(1.3);
+}
+
+.currentRole {
+  background: rgb(240 75 35 / 5.5%);
+}
+
+.currentRole::after {
+  position: absolute;
+  top: 1.15rem;
+  right: 0;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  content: "CURRENT";
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.07em;
+}
+
+.careerMeta {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  padding-right: 1.25rem;
+}
+
+.careerMeta > span,
+.careerMeta > strong {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.065em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.careerMeta > span {
   color: var(--muted);
-  line-height: 1.5;
 }
 
-.polished :global(.experience-list h4) {
-  grid-column: 3 / span 4;
-  margin: 0;
+.careerMeta > strong {
+  width: max-content;
+  color: var(--signal);
+  font-weight: 500;
+}
+
+.careerRole {
+  padding-left: 1rem;
+}
+
+.careerRole h4 {
   max-width: 24rem;
   font-family: var(--serif);
-  font-size: clamp(1.55rem, 2.25vw, 2.35rem);
+  font-size: clamp(1.55rem, 2.2vw, 2.35rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1;
 }
 
-.polished :global(.experience-list article > p:not(.mono-label):not(.experience-summary)) {
-  grid-column: 3 / span 4;
-  margin-top: 0.15rem;
+.careerRole p {
+  margin-top: 0.45rem;
   color: #34332f;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
-.polished :global(.experience-summary) {
-  grid-column: 8 / -1;
-  grid-row: 1 / span 2;
-  align-self: start;
-  max-width: 38rem;
-  margin: 0;
+.careerSummary {
+  max-width: 40rem;
+  padding-right: 4rem;
   color: var(--muted);
-  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
-  line-height: 1.62;
+  font-size: 0.84rem;
+  line-height: 1.6;
 }
 
-.polished :global(.experience-empty > p) {
-  grid-column: 1 / -1;
+.careerMobile {
+  display: none;
 }
 
-.polished :global(.availability) {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1rem;
-  margin: clamp(2rem, 3vw, 3rem) 0 0;
-  padding: 1.2rem 0 0;
-  border: 0;
+.careerEmpty {
+  padding: 2rem 0;
+  color: var(--muted);
 }
 
-.polished :global(.availability)::before {
-  grid-column: 3 / -1;
-  grid-row: 1;
-  align-self: start;
-  border-top: 1px solid var(--signal);
-  content: "";
-  transform: translateY(-1.2rem);
-}
-
-.polished :global(.availability .mono-label) {
-  grid-column: 1 / span 2;
-  padding-top: 0.2rem;
-  color: var(--signal);
-}
-
-.polished :global(.availability > p:last-child) {
-  grid-column: 3 / span 7;
-  max-width: 48rem;
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 1.65vw, 1.55rem);
-  line-height: 1.3;
-  text-wrap: balance;
-}
-
-/* Career arc reads as a secondary summary, not part of the experience rows. */
-.polished :global(.about-grid > :last-child) {
-  margin-top: clamp(3.5rem, 5vw, 5rem);
-}
+/* -------------------------------------------------------------------------- */
+/* Tablet                                                                     */
+/* -------------------------------------------------------------------------- */
 
 @media (max-width: 1100px) {
-  .polished :global(.about-statement) {
+  .profileSpread {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 
-  .polished :global(.about-statement)::before {
+  .profileEyebrow {
     grid-column: 1 / span 2;
   }
 
   .aboutPortrait {
     grid-column: 1 / span 3;
-    grid-row: 2 / span 2;
-    max-width: 20rem;
+    grid-row: 2 / span 3;
   }
 
-  .polished :global(.about-statement h3) {
+  .profileHeadline {
     grid-column: 4 / -1;
     grid-row: 2;
-    max-width: 11ch;
   }
 
-  .polished :global(.about-statement .rich-text) {
+  .pullQuote {
     grid-column: 4 / -1;
     grid-row: 3;
-    align-self: start;
-    max-width: 42rem;
-    margin-top: 1.5rem;
+    max-width: 34rem;
   }
 
-  .polished :global(.experience-list article .mono-label) {
-    grid-column: 1 / span 2;
+  .profileBio {
+    grid-column: 4 / -1;
+    grid-row: 4;
+    max-width: 43rem;
   }
 
-  .polished :global(.experience-list h4),
-  .polished :global(.experience-list article > p:not(.mono-label):not(.experience-summary)) {
-    grid-column: 3 / span 5;
-  }
-
-  .polished :global(.experience-summary) {
-    grid-column: 8 / -1;
-  }
-
-  .polished :global(.availability > p:last-child) {
-    grid-column: 3 / -1;
-  }
-}
-
-@media (max-width: 800px) {
-  .polished :global(.about-statement) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .polished :global(.about-statement)::before {
-    grid-column: 1 / span 2;
-  }
-
-  .aboutPortrait {
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 2;
-    max-width: none;
-  }
-
-  .polished :global(.about-statement h3) {
-    grid-column: 3 / -1;
-    grid-row: 2;
-    max-width: 11ch;
-  }
-
-  .polished :global(.about-statement .rich-text) {
-    grid-column: 3 / -1;
-    grid-row: 3;
-    max-width: 40rem;
+  .profileAnnotations {
+    grid-column: 1 / span 3;
+    grid-row: 5;
     margin-top: 1rem;
   }
 
-  .polished :global(.experience-list article),
-  .polished :global(.experience-empty) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    row-gap: 0.5rem;
+  .availabilityStrip {
+    grid-template-columns: 1fr 1.6fr;
   }
 
-  .polished :global(.experience-list article .mono-label) {
-    grid-column: 1 / span 2;
-    grid-row: 1;
+  .availabilityTags {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
   }
 
-  .polished :global(.experience-list h4) {
-    grid-column: 3 / -1;
-    grid-row: 1;
-  }
-
-  .polished :global(.experience-list article > p:not(.mono-label):not(.experience-summary)) {
-    grid-column: 3 / -1;
-    grid-row: 2;
-  }
-
-  .polished :global(.experience-summary) {
-    grid-column: 3 / -1;
-    grid-row: 3;
-    margin-top: 0.55rem;
-  }
-
-  .polished :global(.availability) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .polished :global(.availability .mono-label) {
-    grid-column: 1 / span 2;
-  }
-
-  .polished :global(.availability > p:last-child) {
-    grid-column: 3 / -1;
+  .careerSummary {
+    padding-right: 1rem;
   }
 }
 
-@media (max-width: 600px) {
-  .polished :global(.about-grid) {
-    padding-top: 1.75rem;
+/* -------------------------------------------------------------------------- */
+/* Mobile                                                                     */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .polished::before {
+    background-size: 25% 100%, 100% 4rem;
   }
 
-  .polished :global(.about-statement) {
-    display: block;
-    padding-bottom: 2.75rem;
+  .polished :global(.section-heading.compact-heading)::after {
+    right: auto;
+    bottom: 1rem;
+    left: 25%;
+    width: 4rem;
   }
 
-  .polished :global(.about-statement)::before {
+  .profileSpread {
     display: block;
-    margin-bottom: 1rem;
+    padding: 1.75rem 0 3rem;
+  }
+
+  .aboutWatermark {
+    top: 0.18em;
+    right: -0.08em;
+    font-size: 11rem;
+  }
+
+  .profileEyebrow {
+    margin-bottom: 1.4rem;
   }
 
   .aboutPortrait {
-    width: min(72vw, 18rem);
+    width: min(82vw, 21rem);
+    margin: 0 0 2rem auto;
+  }
+
+  .profileHeadline {
+    margin-top: 0;
+  }
+
+  .profileHeadline h3 {
     max-width: none;
-    margin: 0 0 1.75rem auto;
+    font-size: clamp(2.8rem, 12vw, 4.35rem);
+    line-height: 0.94;
   }
 
-  .aboutPortrait figcaption {
-    font-size: 0.54rem;
-  }
-
-  .polished :global(.about-statement h3) {
-    max-width: none;
-    font-size: clamp(2.5rem, 12vw, 4rem);
-  }
-
-  .polished :global(.about-statement .rich-text) {
-    margin-top: 1.5rem;
-  }
-
-  .polished :global(.experience-list) {
-    margin-top: 2.75rem;
-  }
-
-  .polished :global(.experience-list article),
-  .polished :global(.experience-empty) {
-    display: block;
-    padding: 1.35rem 0 1.65rem;
-  }
-
-  .polished :global(.experience-list article .mono-label) {
-    display: block;
-    margin-bottom: 0.8rem;
-    padding-top: 0;
-  }
-
-  .polished :global(.experience-list h4) {
-    max-width: none;
+  .pullQuote {
+    margin-top: 2rem;
+    padding: 1rem 0 1rem 1rem;
     font-size: clamp(1.55rem, 7vw, 2rem);
   }
 
-  .polished :global(.experience-list article > p:not(.mono-label):not(.experience-summary)) {
-    margin-top: 0.4rem;
-  }
-
-  .polished :global(.experience-summary) {
+  .profileBio {
+    margin-top: 1.75rem;
     max-width: none;
-    margin-top: 1rem;
   }
 
-  .polished :global(.availability) {
-    display: block;
+  .profileAnnotations {
     margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--signal);
   }
 
-  .polished :global(.availability)::before {
+  .principles {
+    display: flex;
+    gap: 0.85rem;
+    overflow-x: auto;
+    margin-right: calc(var(--page) * -1);
+    padding-right: var(--page);
+    border-bottom: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .principles::-webkit-scrollbar {
     display: none;
   }
 
-  .polished :global(.availability .mono-label) {
-    margin-bottom: 0.75rem;
+  .principles article {
+    min-width: min(72vw, 18rem);
+    min-height: 14rem;
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--ink);
+    border-right: 1px solid var(--line);
+    scroll-snap-align: start;
   }
 
-  .polished :global(.availability > p:last-child) {
-    font-size: 1.2rem;
-  }
-
-  .polished :global(.about-grid > :last-child) {
+  .principles h3 {
     margin-top: 3rem;
+    font-size: 3.1rem;
   }
-}
 
+  .availabilityStrip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 1.15rem;
+  }
 
-.experienceMobile {
-  display: none;
-}
+  .availabilityTags {
+    justify-content: flex-start;
+  }
 
-.experienceDesktop {
-  display: block;
-}
+  .careerSection {
+    margin-top: 4rem;
+  }
 
-@media (max-width: 700px) {
-  .experienceDesktop {
+  .careerHeading {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .careerHeading > p {
+    grid-column: 1 / -1;
+  }
+
+  .careerHeading h3 {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    font-size: clamp(2.9rem, 12vw, 4.2rem);
+  }
+
+  .careerHeading > span {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.8rem;
+  }
+
+  .careerDesktop {
     display: none;
   }
 
-  .experienceMobile {
+  .careerMobile {
     display: block;
+    margin-left: 0.9rem;
+  }
+
+  .careerDisclosure,
+  .currentDisclosure {
+    position: relative;
     border-top: 1px solid var(--line);
   }
 
-  .experienceDisclosure {
+  .careerDisclosure:last-child,
+  .currentDisclosure:last-child {
     border-bottom: 1px solid var(--line);
   }
 
-  .experienceDisclosure summary {
+  .careerDisclosure::before,
+  .currentDisclosure::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.9rem;
+    width: 1px;
+    background: var(--line);
+    content: "";
+  }
+
+  .careerDisclosure::after,
+  .currentDisclosure::after {
+    position: absolute;
+    top: 1.25rem;
+    left: -0.9rem;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--signal);
+    border-radius: 50%;
+    background: var(--paper);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .currentDisclosure {
+    background: rgb(240 75 35 / 5%);
+  }
+
+  .careerDisclosure summary,
+  .currentDisclosure summary {
     display: grid;
-    grid-template-columns: minmax(5.25rem, 0.8fr) minmax(0, 2.4fr) 1.4rem;
+    grid-template-columns: 2rem minmax(0, 1fr) 1.3rem;
     gap: 0.7rem;
     align-items: start;
-    padding: 1.1rem 0;
+    padding: 1rem 0 1.05rem;
     cursor: pointer;
     list-style: none;
   }
 
-  .experienceDisclosure summary::-webkit-details-marker {
+  .careerDisclosure summary::-webkit-details-marker,
+  .currentDisclosure summary::-webkit-details-marker {
     display: none;
   }
 
-  .experienceDisclosure summary > .mono-label {
-    margin: 0;
+  .mobileCareerIndex {
     padding-top: 0.18rem;
-    color: var(--muted);
-    font-size: 0.58rem;
-    line-height: 1.45;
+    color: var(--signal);
+    font-family: var(--mono);
+    font-size: 0.56rem;
   }
 
-  .experienceDisclosure summary > span:nth-child(2) {
+  .mobileCareerTitle {
     display: grid;
-    gap: 0.28rem;
+    gap: 0.25rem;
   }
 
-  .experienceDisclosure summary strong {
+  .mobileCareerTitle small {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .mobileCareerTitle strong {
     font-family: var(--serif);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 1.05;
   }
 
-  .experienceDisclosure summary small {
+  .mobileCareerTitle em {
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
+    font-style: normal;
     line-height: 1.35;
   }
 
-  .experienceDisclosure summary i {
+  .careerDisclosure summary > i,
+  .currentDisclosure summary > i {
     justify-self: end;
     color: var(--signal);
     font-size: 1.2rem;
     font-style: normal;
-    font-weight: 300;
     transition: transform 220ms var(--ease-editorial);
   }
 
-  .experienceDisclosure[open] summary i {
+  .careerDisclosure[open] summary > i,
+  .currentDisclosure[open] summary > i {
     transform: rotate(45deg);
   }
 
-  .experienceDisclosure > p {
-    margin: 0 0 1.2rem;
-    padding-left: calc(5.25rem + 0.7rem);
+  .careerDisclosure > p,
+  .currentDisclosure > p {
+    margin: 0 0 1.15rem;
+    padding-left: 2.7rem;
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     line-height: 1.55;
-    animation: experience-detail-in 220ms var(--ease-editorial);
   }
+}
 
-  @keyframes experience-detail-in {
-    from {
-      transform: translateY(-4px);
-    }
-    to {
-      transform: translateY(0);
-    }
+@media (prefers-reduced-motion: reduce) {
+  .portraitFrame img,
+  .principles article,
+  .availabilityStatus > span,
+  .careerEvents article,
+  .careerEvents article::before {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }
