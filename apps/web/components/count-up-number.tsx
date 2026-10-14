@@ -29,7 +29,6 @@ export function CountUpNumber({
     ).matches;
 
     if (reduceMotion || !("IntersectionObserver" in window)) {
-      setDisplayValue(value);
       return;
     }
 
