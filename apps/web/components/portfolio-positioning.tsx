@@ -1,10 +1,11 @@
+import { CountUpNumber } from "./count-up-number";
 import styles from "./portfolio-positioning.module.css";
 
 const IMPACT = [
-  { value: "5+", label: "Years across digital products, UX & software" },
-  { value: "50+", label: "Web, mobile & tablet interfaces" },
-  { value: "10+", label: "Kiosk & self-service systems" },
-  { value: "5,000+", label: "UI/UX learners supported" },
+  { value: 5, suffix: "+", label: "Years across digital products, UX & software" },
+  { value: 50, suffix: "+", label: "Web, mobile & tablet interfaces" },
+  { value: 10, suffix: "+", label: "Kiosk & self-service systems" },
+  { value: 5000, suffix: "+", label: "UI/UX learners supported" },
 ];
 
 const WORKFLOW = [
@@ -42,7 +43,7 @@ export function ImpactStrip() {
       <div className={styles.impactGrid}>
         {IMPACT.map((item) => (
           <div className={styles.metric} key={item.label}>
-            <strong>{item.value}</strong>
+            <CountUpNumber value={item.value} suffix={item.suffix} />
             <span>{item.label}</span>
           </div>
         ))}
