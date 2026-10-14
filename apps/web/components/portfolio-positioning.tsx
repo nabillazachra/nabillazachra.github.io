@@ -69,9 +69,18 @@ export function WorkMethod() {
           </p>
         </header>
 
+        <div className={`${styles.methodSignal} ${styles.desktopOnly}`} aria-hidden="true">
+          <span>Input / Business need</span>
+          <i />
+          <span>Logic / System behaviour</span>
+          <i />
+          <span>Output / Human experience</span>
+        </div>
+
         <div className={`${styles.workflow} ${styles.desktopOnly}`}>
           {WORKFLOW.map((step, index) => (
             <article className={styles.workflowStep} key={step.title}>
+              <span className={styles.workflowNode} aria-hidden="true" />
               <div className={styles.stepTop}>
                 <span>{step.index}</span>
                 <span>{index < WORKFLOW.length - 1 ? "→" : "↗"}</span>
@@ -110,6 +119,11 @@ export function PrivateWork() {
     <section className={styles.privateWork} aria-labelledby="private-work-title">
       <div className="shell">
         <p className={styles.privateIndex}>04 / Confidential systems & solutions</p>
+        <div className={styles.dossierMeta} aria-hidden="true">
+          <span>Access / Private</span>
+          <span>Client-sensitive material</span>
+          <span>Selected disclosure only</span>
+        </div>
         <div className={styles.privateLead}>
           <h2 id="private-work-title">
             Some of my most recent work cannot live on the internet.
@@ -148,12 +162,15 @@ export function PrivateWork() {
           </div>
         </details>
 
+        <div className={styles.privateFooter}>
+          <span className={styles.privateStamp}>Portfolio / Restricted view</span>
         <a
           className={styles.privateCta}
           href="mailto:nabillazachra14@gmail.com?subject=Private%20Portfolio%20Request"
         >
           Request private portfolio <span aria-hidden="true">↗</span>
         </a>
+        </div>
       </div>
     </section>
   );
