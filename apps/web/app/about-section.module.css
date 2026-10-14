@@ -724,7 +724,7 @@
   }
 
   .principles article {
-    min-width: min(78vw, 19rem);
+    min-width: min(72vw, 18rem);
     min-height: 14rem;
     flex: 0 0 auto;
     border-bottom: 1px solid var(--ink);
