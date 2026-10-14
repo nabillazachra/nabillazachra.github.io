@@ -239,7 +239,10 @@ export default async function HomePage() {
                     >
                       <div className={aboutStyles.careerMeta}>
                         <span>{experience.period}</span>
-                        <strong>{getExperiencePhase(experience.role)}</strong>
+                        <strong>
+                          {getExperiencePhase(experience.role)}
+                          {index === 0 ? " / CURRENT" : ""}
+                        </strong>
                       </div>
                       <div className={aboutStyles.careerRole}>
                         <h4>{experience.role}</h4>
