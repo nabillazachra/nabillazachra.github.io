@@ -8,7 +8,26 @@ import { RichText } from "@/components/rich-text";
 import { getHomeContent } from "@/lib/content/get-content";
 import { ABOUT_PORTRAIT_DATA } from "@/lib/about-portrait-data";
 import aboutStyles from "./about-section.module.css";
-import { CareerArc, ImpactStrip, PrivateWork, TeachingStrip, WorkMethod } from "@/components/portfolio-positioning";
+import { ImpactStrip, PrivateWork, TeachingStrip, WorkMethod } from "@/components/portfolio-positioning";
+
+
+function getExperiencePhase(role: string) {
+  const normalized = role.toLowerCase();
+
+  if (normalized.includes("technical consultant") || normalized.includes("system analyst")) {
+    return "CONSULT";
+  }
+
+  if (normalized.includes("mentor") || normalized.includes("instructor")) {
+    return "TEACH";
+  }
+
+  if (normalized.includes("ux") || normalized.includes("ui")) {
+    return "DESIGN";
+  }
+
+  return "BUILD";
+}
 
 export default async function HomePage() {
   const { projects, experiences, playground, about, settings } =
@@ -108,80 +127,158 @@ export default async function HomePage() {
           <p className="section-index">05</p>
           <h2 id="about-title">About / Experience</h2>
         </header>
-        <div className="about-grid">
-          <div className="about-statement">
-            <figure className={aboutStyles.aboutPortrait}>
-              <div className={aboutStyles.portraitFrame}>
-                <Image
-                  alt="Nabilla Zachra"
-                  height={525}
-                  src={`data:image/webp;base64,${ABOUT_PORTRAIT_DATA}`}
-                  unoptimized
-                  width={420}
-                />
-              </div>
-              <figcaption>Nabilla Zachra / Indonesia</figcaption>
-            </figure>
+
+        <div className={aboutStyles.profileSpread}>
+          <div className={aboutStyles.aboutWatermark} aria-hidden="true">05</div>
+
+          <p className={aboutStyles.profileEyebrow}>Profile / 2026</p>
+
+          <figure className={aboutStyles.aboutPortrait}>
+            <div className={aboutStyles.portraitFrame}>
+              <Image
+                alt="Nabilla Zachra"
+                height={525}
+                src={`data:image/webp;base64,${ABOUT_PORTRAIT_DATA}`}
+                unoptimized
+                width={420}
+              />
+              <span className={aboutStyles.portraitIndex} aria-hidden="true">NZ / 05</span>
+            </div>
+            <figcaption>
+              <span>Nabilla Zachra</span>
+              <span>Indonesia</span>
+            </figcaption>
+          </figure>
+
+          <div className={aboutStyles.profileAnnotations}>
+            <div>
+              <span>Based</span>
+              <strong>Indonesia</strong>
+            </div>
+            <div>
+              <span>Focus</span>
+              <strong>Systems + Product</strong>
+            </div>
+            <div>
+              <span>Mode</span>
+              <strong>Consult + Design</strong>
+            </div>
+          </div>
+
+          <div className={aboutStyles.profileHeadline}>
             <h3>{about.heading}</h3>
+          </div>
+
+          <blockquote className={aboutStyles.pullQuote}>
+            “I care about what happens behind the interface as much as what
+            appears on it.”
+          </blockquote>
+
+          <div className={aboutStyles.profileBio}>
             <RichText value={about.bio} />
           </div>
-          <div className="experience-list">
-            {experiences.length ? (
-              <>
-                <div className={aboutStyles.experienceDesktop}>
-                  {experiences.map((experience) => (
+        </div>
+
+        <div className={aboutStyles.principles} aria-label="Working principles">
+          <article>
+            <span>01</span>
+            <h3>Clarify</h3>
+            <p>Turn requirements, ambiguity, and constraints into something teams can act on.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Connect</h3>
+            <p>Bridge business intent, system behaviour, implementation, and user experience.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Deliver</h3>
+            <p>Translate decisions into flows, specifications, interfaces, and aligned next steps.</p>
+          </article>
+        </div>
+
+        {about.availability ? (
+          <div className={aboutStyles.availabilityStrip}>
+            <div className={aboutStyles.availabilityStatus}>
+              <span aria-hidden="true" />
+              <strong>Available for selected opportunities</strong>
+            </div>
+            <p>{about.availability}</p>
+            <div className={aboutStyles.availabilityTags} aria-label="Opportunity areas">
+              <span>Technical Consulting</span>
+              <span>System Analysis</span>
+              <span>Product</span>
+              <span>UX</span>
+            </div>
+          </div>
+        ) : null}
+
+        <section className={aboutStyles.careerSection} aria-labelledby="career-title">
+          <div className={aboutStyles.careerHeading}>
+            <p>Career progression</p>
+            <h3 id="career-title">Build → Design → Consult.</h3>
+            <span>2017 — Now</span>
+          </div>
+
+          {experiences.length ? (
+            <>
+              <div className={aboutStyles.careerDesktop}>
+                <div className={aboutStyles.careerTrack} aria-hidden="true">
+                  <span>Build</span>
+                  <i />
+                  <span>Design</span>
+                  <i />
+                  <span>Consult</span>
+                </div>
+
+                <div className={aboutStyles.careerEvents}>
+                  {experiences.map((experience, index) => (
                     <article
+                      className={index === 0 ? aboutStyles.currentRole : undefined}
                       key={`${experience.organisation}-${experience.period}`}
                     >
-                      <p className="mono-label">{experience.period}</p>
-                      <h4>{experience.role}</h4>
-                      <p>{experience.organisation}</p>
+                      <div className={aboutStyles.careerMeta}>
+                        <span>{experience.period}</span>
+                        <strong>{getExperiencePhase(experience.role)}</strong>
+                      </div>
+                      <div className={aboutStyles.careerRole}>
+                        <h4>{experience.role}</h4>
+                        <p>{experience.organisation}</p>
+                      </div>
                       {experience.summary ? (
-                        <p className="experience-summary">{experience.summary}</p>
+                        <p className={aboutStyles.careerSummary}>{experience.summary}</p>
                       ) : null}
                     </article>
                   ))}
                 </div>
+              </div>
 
-                <div className={aboutStyles.experienceMobile}>
-                  {experiences.map((experience) => (
-                    <details
-                      className={aboutStyles.experienceDisclosure}
-                      key={`${experience.organisation}-${experience.period}-mobile`}
-                    >
-                      <summary>
-                        <span className="mono-label">{experience.period}</span>
-                        <span>
-                          <strong>{experience.role}</strong>
-                          <small>{experience.organisation}</small>
-                        </span>
-                        <i aria-hidden="true">+</i>
-                      </summary>
-                      {experience.summary ? (
-                        <p>{experience.summary}</p>
-                      ) : null}
-                    </details>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="experience-empty">
-                <p className="mono-label">Experience record</p>
-                <p>
-                  Detailed roles and dates will be published from verified
-                  source material—never filled in by assumption.
-                </p>
+              <div className={aboutStyles.careerMobile}>
+                {experiences.map((experience, index) => (
+                  <details
+                    className={index === 0 ? aboutStyles.currentDisclosure : aboutStyles.careerDisclosure}
+                    key={`${experience.organisation}-${experience.period}-mobile`}
+                  >
+                    <summary>
+                      <span className={aboutStyles.mobileCareerIndex}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={aboutStyles.mobileCareerTitle}>
+                        <small>{getExperiencePhase(experience.role)} / {experience.period}</small>
+                        <strong>{experience.role}</strong>
+                        <em>{experience.organisation}</em>
+                      </span>
+                      <i aria-hidden="true">+</i>
+                    </summary>
+                    {experience.summary ? <p>{experience.summary}</p> : null}
+                  </details>
+                ))}
               </div>
-            )}
-            {about.availability ? (
-              <div className="availability">
-                <p className="mono-label">Availability</p>
-                <p>{about.availability}</p>
-              </div>
-            ) : null}
-          </div>
-          <CareerArc />
-        </div>
+            </>
+          ) : (
+            <p className={aboutStyles.careerEmpty}>Experience details are being updated.</p>
+          )}
+        </section>
       </section>
 
       <TeachingStrip />
