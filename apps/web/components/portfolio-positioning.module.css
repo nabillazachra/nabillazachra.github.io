@@ -27,6 +27,7 @@
 
 .metric strong {
   font-family: var(--serif);
+  font-variant-numeric: tabular-nums;
   font-size: clamp(4.5rem, 8vw, 9rem);
   font-weight: 400;
   letter-spacing: -0.07em;
