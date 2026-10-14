@@ -23,6 +23,13 @@ export default async function HomePage() {
           <span aria-hidden="true">●</span>
           <p>Technical consultant × product designer</p>
         </div>
+        <div className="hero-monogram" aria-hidden="true">NZ</div>
+        <div className="hero-system-rail" aria-hidden="true">
+          <span>01 / Business</span>
+          <span>02 / Systems</span>
+          <span>03 / Experience</span>
+          <span>04 / Delivery</span>
+        </div>
         <h1 className="reveal reveal-delay" id="hero-title">
           I turn complex systems
           <br />
