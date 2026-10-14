@@ -1845,3 +1845,64 @@ dd {
     height: 2px;
   }
 }
+
+
+/* Mobile selected-work composition: visual first, then editorial copy. */
+@media (max-width: 700px) {
+  .project-row,
+  .project-row-reverse {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .project-row::before,
+  .project-row-reverse::before {
+    display: none;
+  }
+
+  .project-row .project-artwork-link,
+  .project-row-reverse .project-artwork-link,
+  .project-row:first-child .project-artwork-link {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-row .project-number,
+  .project-row-reverse .project-number {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .project-row .project-copy,
+  .project-row-reverse .project-copy,
+  .project-row:first-child .project-copy {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    min-height: auto;
+    padding-left: 0;
+  }
+
+  .project-case-meta {
+    margin-bottom: 0.7rem;
+  }
+
+  .project-copy h3,
+  .project-row-reverse .project-copy h3 {
+    margin-top: 1.4rem;
+  }
+
+  .project-copy .text-link {
+    margin-top: 1.6rem;
+  }
+
+  .project-row:first-child {
+    padding-top: 1.5rem;
+  }
+
+  .project-row:first-child .project-artwork,
+  .project-artwork {
+    min-height: 21rem;
+    aspect-ratio: 1.05 / 1;
+  }
+}
