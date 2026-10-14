@@ -1906,3 +1906,285 @@ dd {
     aspect-ratio: 1.05 / 1;
   }
 }
+
+
+/* Contact finale ------------------------------------------------------------ */
+.contact {
+  position: relative;
+  min-height: min(94svh, 58rem);
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(2rem, 3vw, 3rem);
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.contact::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 248 234 / 5%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 248 234 / 3.5%) 1px, transparent 1px);
+  background-size: 8.333% 100%, 100% 4.5rem;
+  content: "";
+  pointer-events: none;
+}
+
+.contact-grid {
+  position: relative;
+  z-index: 1;
+  min-height: calc(min(94svh, 58rem) - clamp(7rem, 11vw, 11rem));
+  align-content: start;
+}
+
+.contact-watermark {
+  position: absolute;
+  z-index: -1;
+  top: -0.08em;
+  right: -0.03em;
+  color: rgb(255 248 234 / 3.5%);
+  font-family: var(--serif);
+  font-size: clamp(15rem, 33vw, 35rem);
+  font-weight: 400;
+  letter-spacing: -0.09em;
+  line-height: 0.72;
+  pointer-events: none;
+  user-select: none;
+}
+
+.contact-grid > .section-index {
+  grid-column: 1 / span 2;
+  color: var(--signal);
+}
+
+.contact-kicker {
+  grid-column: 10 / -1;
+  justify-self: end;
+  color: #96948c;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.contact h2 {
+  grid-column: 2 / -1;
+  max-width: none;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(5rem, 9.7vw, 10rem);
+  line-height: 0.78;
+}
+
+.contact h2 em {
+  color: var(--signal);
+  font-weight: 400;
+}
+
+.contact-intro {
+  grid-column: 7 / span 4 !important;
+  max-width: 32rem;
+  margin-top: clamp(2rem, 3.5vw, 3.5rem) !important;
+  color: #aaa79e;
+  font-size: 0.9rem !important;
+  line-height: 1.55;
+}
+
+.contact-links {
+  grid-column: 3 / -1;
+  display: grid;
+  gap: 0;
+  margin-top: clamp(3rem, 5vw, 5rem);
+  padding-top: 0;
+  border-top: 1px solid #55554e;
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: 2fr 7fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  min-height: 5rem;
+  padding: 1rem 0.85rem;
+  border-bottom: 1px solid #55554e;
+  font-family: var(--sans);
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition:
+    background-color 240ms ease,
+    color 240ms ease,
+    padding-inline 320ms var(--ease-editorial) !important;
+}
+
+.contact-link > span {
+  color: #8f8d85;
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.contact-link > strong {
+  font-family: var(--serif);
+  font-size: clamp(1.55rem, 2.5vw, 2.65rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.contact-link > i {
+  justify-self: end;
+  color: var(--signal);
+  font-size: 1.3rem;
+  font-style: normal;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  padding-inline: 1.2rem;
+  background: var(--signal);
+  color: #fff8ea;
+  transform: none;
+}
+
+.contact-link:hover > span,
+.contact-link:focus-visible > span,
+.contact-link:hover > i,
+.contact-link:focus-visible > i {
+  color: #fff8ea;
+}
+
+.contact-meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: end;
+  margin-top: auto;
+  padding-top: clamp(2rem, 4vw, 4rem);
+  color: #77756f;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.contact-meta span:nth-child(2) {
+  text-align: center;
+}
+
+.contact-meta span:last-child {
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .contact {
+    min-height: auto;
+    padding: 4rem 0 2rem;
+  }
+
+  .contact::before {
+    background-size: 25% 100%, 100% 4rem;
+  }
+
+  .contact-watermark {
+    top: 0.2em;
+    right: -0.08em;
+    font-size: 12rem;
+  }
+
+  .contact-grid {
+    min-height: 0;
+  }
+
+  .contact-grid > .section-index {
+    grid-column: 1;
+  }
+
+  .contact-kicker {
+    grid-column: 2 / -1;
+    justify-self: end;
+    max-width: 12rem;
+    text-align: right;
+  }
+
+  .contact h2 {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+    font-size: clamp(4.3rem, 19vw, 6rem);
+    line-height: 0.8;
+  }
+
+  .contact-intro {
+    grid-column: 2 / -1 !important;
+    margin-top: 2rem !important;
+  }
+
+  .contact-links {
+    grid-column: 1 / -1;
+    margin-top: 2.5rem;
+  }
+
+  .contact-link {
+    grid-template-columns: 1fr auto;
+    min-height: 4.6rem;
+    padding: 0.9rem 0;
+  }
+
+  .contact-link > span {
+    grid-column: 1;
+  }
+
+  .contact-link > strong {
+    grid-column: 1;
+    font-size: 1.45rem;
+  }
+
+  .contact-link > i {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .contact-meta {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-meta span:nth-child(2),
+  .contact-meta span:last-child {
+    text-align: left;
+  }
+}
+
+
+/* Keep the accessibility skip link completely out of visual flow until focused. */
+.skip-link {
+  position: fixed !important;
+  z-index: 1000;
+  top: 0 !important;
+  left: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link:focus {
+  top: 0.75rem !important;
+  left: var(--page) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.7rem 1rem !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  background: var(--ink);
+  color: var(--ivory);
+  white-space: normal !important;
+}

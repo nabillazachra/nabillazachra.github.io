@@ -910,3 +910,128 @@
     transform: none !important;
   }
 }
+
+
+/* Career ledger refinement -------------------------------------------------- */
+@media (min-width: 761px) {
+  .careerSection {
+    margin-top: clamp(3.5rem, 5.5vw, 5.5rem);
+  }
+
+  .careerHeading {
+    padding-bottom: clamp(1.5rem, 2.4vw, 2.2rem);
+  }
+
+  .careerHeading h3 {
+    font-size: clamp(2.8rem, 4.5vw, 4.7rem);
+  }
+
+  .careerTrack {
+    padding: 0.8rem 0;
+    font-size: 0.52rem;
+  }
+
+  .careerEvents {
+    --career-meta-width: clamp(10.5rem, 14vw, 13rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .careerEvents::before {
+    left: calc(var(--career-meta-width) - 0.45rem);
+    background: linear-gradient(
+      to bottom,
+      var(--signal) 0%,
+      var(--line) 14%,
+      var(--line) 100%
+    );
+  }
+
+  .careerEvents article {
+    grid-template-columns:
+      var(--career-meta-width)
+      minmax(17rem, 0.85fr)
+      minmax(22rem, 1.15fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    min-height: 0;
+    padding: 1rem 0 1.15rem;
+    align-items: start;
+  }
+
+  .careerEvents article::before {
+    top: 1.18rem;
+    left: calc(var(--career-meta-width) - 0.45rem);
+    width: 8px;
+    height: 8px;
+    border-width: 1.5px;
+  }
+
+  .careerEvents article:hover {
+    transform: none;
+  }
+
+  .currentRole {
+    background:
+      linear-gradient(90deg, rgb(240 75 35 / 7%) 0%, rgb(240 75 35 / 2%) 58%, transparent 100%);
+  }
+
+  .currentRole::after {
+    display: none;
+  }
+
+  .careerMeta {
+    gap: 0.42rem;
+    padding: 0 1.2rem 0 0;
+  }
+
+  .careerMeta > span,
+  .careerMeta > strong {
+    font-size: 0.53rem;
+    line-height: 1.4;
+  }
+
+  .careerMeta > strong {
+    color: var(--signal);
+  }
+
+  .careerRole {
+    padding-left: 0.7rem;
+  }
+
+  .careerRole h4 {
+    max-width: 23rem;
+    font-size: clamp(1.45rem, 1.95vw, 2rem);
+    line-height: 0.98;
+  }
+
+  .careerRole p {
+    margin-top: 0.35rem;
+    font-size: 0.74rem;
+  }
+
+  .careerSummary {
+    align-self: start;
+    max-width: 38rem;
+    padding: 0.05rem clamp(1.5rem, 3vw, 3.5rem) 0 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1080px) {
+  .careerEvents {
+    --career-meta-width: 9.5rem;
+  }
+
+  .careerEvents article {
+    grid-template-columns: var(--career-meta-width) minmax(15rem, 0.9fr) minmax(18rem, 1.1fr);
+    gap: 1rem;
+  }
+
+  .careerRole h4 {
+    font-size: 1.55rem;
+  }
+
+  .careerSummary {
+    padding-right: 0.75rem;
+  }
+}
