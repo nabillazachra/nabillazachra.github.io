@@ -363,19 +363,45 @@ export function TeachingStrip() {
             decision-making sharper.
           </p>
         </div>
+
         <div className={styles.teachingGrid}>
-          <article>
-            <span>2024</span>
-            <h3>UI/UX Design Mentor</h3>
-            <p>Telkom Indonesia · Hipster Class</p>
-            <strong>10+ participants</strong>
+          <article className={styles.teachingCardDark}>
+            <div className={styles.teachingCardTop}>
+              <span>01 / Mentoring</span>
+              <span>2024</span>
+            </div>
+            <div className={styles.teachingMetric}>
+              <strong>10+</strong>
+              <span>participants mentored</span>
+            </div>
+            <div className={styles.teachingCardCopy}>
+              <h3>UI/UX Design Mentor</h3>
+              <p>Telkom Indonesia · Hipster Class</p>
+            </div>
           </article>
-          <article>
-            <span>2023—2024</span>
-            <h3>Assistant UI/UX Instructor</h3>
-            <p>Skill Academy by Ruangguru</p>
-            <strong>5,000+ learners supported</strong>
+
+          <article className={styles.teachingCardSignal}>
+            <div className={styles.teachingCardTop}>
+              <span>02 / Teaching support</span>
+              <span>2023—2024</span>
+            </div>
+            <div className={styles.teachingMetric}>
+              <strong>5,000+</strong>
+              <span>learners supported</span>
+            </div>
+            <div className={styles.teachingCardCopy}>
+              <h3>Assistant UI/UX Instructor</h3>
+              <p>Skill Academy by Ruangguru</p>
+            </div>
           </article>
+        </div>
+
+        <div className={styles.teachingNote}>
+          <span>Why it matters</span>
+          <p>
+            Teaching forces clarity—if I cannot explain a design decision
+            simply, I probably do not understand it well enough yet.
+          </p>
         </div>
       </div>
     </section>
