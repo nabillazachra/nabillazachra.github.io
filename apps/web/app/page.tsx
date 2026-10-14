@@ -180,17 +180,17 @@ export default async function HomePage() {
         </div>
 
         <div className={aboutStyles.principles} aria-label="Working principles">
-          <article>
+          <article data-index="01">
             <span>01</span>
             <h3>Clarify</h3>
             <p>Turn requirements, ambiguity, and constraints into something teams can act on.</p>
           </article>
-          <article>
+          <article data-index="02">
             <span>02</span>
             <h3>Connect</h3>
             <p>Bridge business intent, system behaviour, implementation, and user experience.</p>
           </article>
-          <article>
+          <article data-index="03">
             <span>03</span>
             <h3>Deliver</h3>
             <p>Translate decisions into flows, specifications, interfaces, and aligned next steps.</p>
