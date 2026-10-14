@@ -313,35 +313,70 @@ export default async function HomePage() {
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="shell contact-grid">
+          <div className="contact-watermark" aria-hidden="true">08</div>
           <p className="section-index">08 / Contact</p>
-          <h2 id="contact-title">Have a complex problem to make clearer?</h2>
-          <p>
+          <p className="contact-kicker">Open to selected opportunities / 2026</p>
+
+          <h2 id="contact-title">
+            Have a complex problem
+            <br />
+            <em>to make clearer?</em>
+          </h2>
+
+          <p className="contact-intro">
             I am interested in work where business requirements, systems thinking,
             technical feasibility, and user experience need to meet.
           </p>
+
           <div className="contact-links">
             {settings.email ? (
-              <a className="contact-link" href={`mailto:${settings.email}`}>
-                {settings.email} ↗
+              <a
+                className="contact-link"
+                href={`mailto:${settings.email}`}
+              >
+                <span>Email</span>
+                <strong>{settings.email}</strong>
+                <i aria-hidden="true">↗</i>
               </a>
             ) : null}
+
             {settings.socialLinks.map((link) => (
               <ExternalLink
                 className="contact-link"
                 href={link.url}
                 key={link.label}
               >
-                {link.label} ↗
+                <span>{link.label}</span>
+                <strong>View profile</strong>
+                <i aria-hidden="true">↗</i>
               </ExternalLink>
             ))}
+
+            <a
+              className="contact-link"
+              href="mailto:nabillazachra14@gmail.com?subject=Private%20Portfolio%20Request"
+            >
+              <span>Private portfolio</span>
+              <strong>Request selected case studies</strong>
+              <i aria-hidden="true">↗</i>
+            </a>
+
             {!settings.email && !settings.socialLinks.length ? (
               <ExternalLink
                 className="contact-link"
                 href="https://github.com/nabillazachra"
               >
-                GitHub ↗
+                <span>GitHub</span>
+                <strong>View profile</strong>
+                <i aria-hidden="true">↗</i>
               </ExternalLink>
             ) : null}
+          </div>
+
+          <div className="contact-meta" aria-label="Contact metadata">
+            <span>Indonesia</span>
+            <span>Technical Consulting × Product Design</span>
+            <span>2026</span>
           </div>
         </div>
       </section>
