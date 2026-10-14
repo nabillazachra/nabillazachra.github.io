@@ -14,7 +14,7 @@ if (!(await map.isVisible())) throw new Error("Capability system map is not visi
 const phases = map.locator('[class*="phaseRail"] span');
 if ((await phases.count()) !== 4) throw new Error("Expected four workflow phases");
 
-const nodes = map.locator('[class*="capabilityNode"]');
+const nodes = map.locator("article[data-capability]");
 if ((await nodes.count()) !== 8) throw new Error("Expected eight capability nodes");
 
 const core = map.locator('[data-capability="02"]');
