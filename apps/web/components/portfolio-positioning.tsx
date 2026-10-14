@@ -41,9 +41,9 @@ export function ImpactStrip() {
   return (
     <section className={styles.impact} aria-label="Selected impact">
       <div className={styles.impactGrid}>
-        {IMPACT.map((item) => (
+        {IMPACT.map((item, index) => (
           <div className={styles.metric} key={item.label}>
-            <CountUpNumber value={item.value} suffix={item.suffix} />
+            <CountUpNumber delay={index * 100} value={item.value} suffix={item.suffix} />
             <span>{item.label}</span>
           </div>
         ))}
