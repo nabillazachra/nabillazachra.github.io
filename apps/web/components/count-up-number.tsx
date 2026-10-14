@@ -6,15 +6,18 @@ type CountUpNumberProps = {
   value: number;
   suffix?: string;
   duration?: number;
+  delay?: number;
 };
 
 export function CountUpNumber({
   value,
   suffix = "",
   duration = 1300,
+  delay = 0,
 }: CountUpNumberProps) {
   const ref = useRef<HTMLElement | null>(null);
   const frameRef = useRef<number | null>(null);
+  const timeoutRef = useRef<number | null>(null);
   const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
@@ -39,23 +42,25 @@ export function CountUpNumber({
 
         hasRun = true;
         observer.disconnect();
-
-        const startedAt = performance.now();
         setDisplayValue(0);
 
-        const tick = (now: number) => {
-          const progress = Math.min((now - startedAt) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          setDisplayValue(Math.round(value * eased));
+        timeoutRef.current = window.setTimeout(() => {
+          const startedAt = performance.now();
 
-          if (progress < 1) {
-            frameRef.current = requestAnimationFrame(tick);
-          } else {
-            setDisplayValue(value);
-          }
-        };
+          const tick = (now: number) => {
+            const progress = Math.min((now - startedAt) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setDisplayValue(Math.round(value * eased));
 
-        frameRef.current = requestAnimationFrame(tick);
+            if (progress < 1) {
+              frameRef.current = requestAnimationFrame(tick);
+            } else {
+              setDisplayValue(value);
+            }
+          };
+
+          frameRef.current = requestAnimationFrame(tick);
+        }, delay);
       },
       { threshold: 0.45 },
     );
@@ -64,11 +69,14 @@ export function CountUpNumber({
 
     return () => {
       observer.disconnect();
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
       if (frameRef.current !== null) {
         cancelAnimationFrame(frameRef.current);
       }
     };
-  }, [duration, value]);
+  }, [delay, duration, value]);
 
   return (
     <strong
