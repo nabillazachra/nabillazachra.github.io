@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Nabilla Zachra is a Technical Consultant and Product Designer working across business requirements, system analysis, user experience, and interface design.",
   openGraph: {
-    title: "Nabilla Zachra — Product & Experience Designer",
+    title: "Nabilla Zachra — Technical Consultant × Product Designer",
     description:
       "Business requirements, system analysis, product thinking, and user experience—connected through technical understanding.",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#f1eee5",
+  themeColor: "#f7f3eb",
 };
 
 export default function RootLayout({

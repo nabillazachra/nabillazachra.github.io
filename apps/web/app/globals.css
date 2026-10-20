@@ -1,11 +1,11 @@
 :root {
-  --ivory: #f1eee5;
-  --paper: #f7f4eb;
-  --ink: #161613;
+  --ivory: #f7f3eb;
+  --paper: #fbf8f1;
+  --ink: #121211;
   --muted: #69665e;
-  --line: #c9c5ba;
-  --signal: #f04b23;
-  --signal-dark: #c93212;
+  --line: #d9d6d1;
+  --signal: #fe5c04;
+  --signal-dark: #d94f00;
   --page: clamp(1rem, 3vw, 3.25rem);
   --space-section: clamp(4rem, 7vw, 7rem);
   --space-section-tight: clamp(3rem, 5vw, 5rem);
@@ -1451,7 +1451,7 @@ dd {
 .other-work-row:hover,
 .playground-row:hover {
   padding-inline: 0.65rem;
-  background: rgb(240 75 35 / 5%);
+  background: rgb(254 92 4 / 5%);
 }
 
 .experience-list article {
@@ -1617,8 +1617,8 @@ dd {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgb(240 75 35 / 58%) 20%,
-    rgb(240 75 35 / 18%) 78%,
+    rgb(254 92 4 / 58%) 20%,
+    rgb(254 92 4 / 18%) 78%,
     transparent 100%
   );
   content: "";
@@ -2187,4 +2187,202 @@ dd {
   background: var(--ink);
   color: var(--ivory);
   white-space: normal !important;
+}
+
+
+/* NZ Brand System v1 -------------------------------------------------------- */
+/* Source of truth: Structured Systems mini brand guideline. */
+:root {
+  --stone: #d9d6d1;
+  --signal-soft: rgb(254 92 4 / 8%);
+  --signal-rule: rgb(254 92 4 / 62%);
+}
+
+.brand-home {
+  grid-column: 1 / span 3;
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+  width: max-content;
+  min-width: 0;
+}
+
+.brand-home-mark {
+  width: 3.4rem;
+  height: auto;
+  flex: 0 0 auto;
+  color: var(--ink);
+}
+
+.brand-home-copy {
+  display: grid;
+  gap: 0.18rem;
+  line-height: 1;
+}
+
+.brand-home-copy strong {
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand-home-copy small {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.site-header {
+  align-items: center;
+}
+
+.site-header nav a::after,
+.text-link::after,
+.back-link::after,
+.site-footer a::after {
+  height: 2px;
+  background: var(--signal);
+}
+
+.hero-monogram {
+  top: 8%;
+  right: clamp(0.5rem, 2vw, 2rem);
+  width: clamp(15rem, 31vw, 34rem);
+  color: rgb(18 18 17 / 4.5%);
+  font-size: initial;
+  letter-spacing: initial;
+  line-height: 1;
+}
+
+.hero-monogram-mark {
+  width: 100%;
+  height: auto;
+}
+
+.hero-monogram-mark .brand-mark-signal {
+  fill: rgb(254 92 4 / 6%);
+}
+
+.hero-kicker span {
+  color: var(--signal);
+}
+
+.section-index,
+.project-number {
+  color: var(--signal);
+}
+
+.project-case-meta::before {
+  display: inline-block;
+  width: 1.4rem;
+  height: 2px;
+  background: var(--signal);
+  content: "";
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.project-case-meta span:first-child {
+  color: var(--ink);
+}
+
+.project-row:hover .project-number {
+  color: var(--signal);
+}
+
+.project-artwork-link::after {
+  border-color: rgb(255 255 255 / 38%);
+  background: rgb(18 18 17 / 82%);
+}
+
+.contact h2 em {
+  color: var(--signal);
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  background: var(--signal);
+}
+
+@media (max-width: 900px) {
+  .brand-home {
+    grid-column: 1 / span 3;
+  }
+
+  .hero-monogram {
+    width: clamp(12rem, 38vw, 21rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .brand-home {
+    grid-column: 1;
+    gap: 0.55rem;
+  }
+
+  .brand-home-mark {
+    width: 2.55rem;
+  }
+
+  .brand-home-copy {
+    display: none;
+  }
+
+  .hero-monogram {
+    top: 15%;
+    right: -2.4rem;
+    width: 58vw;
+  }
+
+  .hero-monogram-mark .brand-mark-signal {
+    fill: rgb(254 92 4 / 5%);
+  }
+}
+
+
+/* Directional-cut applications -------------------------------------------- */
+.project-artwork i {
+  right: -2%;
+  bottom: -4%;
+  width: 46%;
+  border: 0;
+  border-radius: 0;
+  background: currentColor;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  opacity: 0.12;
+}
+
+.project-row:hover .project-artwork i {
+  transform: translate(-5%, -4%) scale(1.04);
+}
+
+.contact-brand-mark {
+  grid-column: 1 / span 2;
+  align-self: end;
+  width: clamp(4.8rem, 7vw, 7.5rem);
+  margin-top: auto;
+  color: var(--ivory);
+}
+
+.contact-brand-mark .brand-mark-signal {
+  fill: var(--signal);
+}
+
+.contact-meta {
+  grid-column: 3 / -1;
+}
+
+@media (max-width: 700px) {
+  .contact-brand-mark {
+    grid-column: 1;
+    width: 4.4rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-meta {
+    grid-column: 1 / -1;
+  }
 }

@@ -1,11 +1,16 @@
 import Link from "next/link";
 
+import { BrandMark } from "./brand-mark";
+
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/" aria-label="Nabilla Zachra, home">
-        <span>Nabilla</span>
-        <span>Zachra</span>
+      <Link className="brand-home" href="/" aria-label="Nabilla Zachra, home">
+        <BrandMark className="brand-home-mark" decorative />
+        <span className="brand-home-copy">
+          <strong>Nabilla Zachra</strong>
+          <small>NZ / Identity System</small>
+        </span>
       </Link>
       <p className="header-role">Technical Consultant × Product Designer</p>
       <nav aria-label="Primary navigation">

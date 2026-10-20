@@ -274,7 +274,7 @@
 }
 
 .principles article:hover {
-  background: rgb(240 75 35 / 5%);
+  background: rgb(254 92 4 / 5%);
   transform: translateY(-3px);
 }
 
@@ -328,7 +328,7 @@
   flex: 0 0 auto;
   border-radius: 50%;
   background: var(--signal);
-  box-shadow: 0 0 0 5px rgb(240 75 35 / 10%);
+  box-shadow: 0 0 0 5px rgb(254 92 4 / 10%);
   animation: availability-pulse 2.8s ease-in-out infinite;
 }
 
@@ -505,7 +505,7 @@
 }
 
 .careerEvents article:hover {
-  background: rgb(240 75 35 / 4%);
+  background: rgb(254 92 4 / 4%);
 }
 
 .careerEvents article:hover::before {
@@ -513,7 +513,7 @@
 }
 
 .currentRole {
-  background: rgb(240 75 35 / 5.5%);
+  background: rgb(254 92 4 / 5.5%);
 }
 
 .currentRole::after {
@@ -820,7 +820,7 @@
   }
 
   .currentDisclosure {
-    background: rgb(240 75 35 / 5%);
+    background: rgb(254 92 4 / 5%);
   }
 
   .careerDisclosure summary,
@@ -971,7 +971,7 @@
 
   .currentRole {
     background:
-      linear-gradient(90deg, rgb(240 75 35 / 7%) 0%, rgb(240 75 35 / 2%) 58%, transparent 100%);
+      linear-gradient(90deg, rgb(254 92 4 / 7%) 0%, rgb(254 92 4 / 2%) 58%, transparent 100%);
   }
 
   .currentRole::after {
