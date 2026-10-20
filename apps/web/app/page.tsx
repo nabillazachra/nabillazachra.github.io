@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { BrandMark } from "@/components/brand-mark";
 import { ExternalLink } from "@/components/external-link";
 import { ProjectArtwork } from "@/components/project-artwork";
 import { ProjectList } from "@/components/project-list";
@@ -42,7 +43,9 @@ export default async function HomePage() {
           <span aria-hidden="true">●</span>
           <p>Technical consultant × product designer</p>
         </div>
-        <div className="hero-monogram" aria-hidden="true">NZ</div>
+        <div className="hero-monogram" aria-hidden="true">
+          <BrandMark className="hero-monogram-mark" decorative />
+        </div>
         <div className="hero-system-rail" aria-hidden="true">
           <span>01 / Business</span>
           <span>02 / Systems</span>
