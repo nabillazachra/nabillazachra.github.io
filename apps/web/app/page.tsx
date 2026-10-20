@@ -379,6 +379,8 @@ export default async function HomePage() {
             ) : null}
           </div>
 
+          <BrandMark className="contact-brand-mark" decorative />
+
           <div className="contact-meta" aria-label="Contact metadata">
             <span>Indonesia</span>
             <span>Technical Consulting × Product Design</span>
