@@ -1451,7 +1451,7 @@ dd {
 .other-work-row:hover,
 .playground-row:hover {
   padding-inline: 0.65rem;
-  background: rgb(240 75 35 / 5%);
+  background: rgb(254 92 4 / 5%);
 }
 
 .experience-list article {
@@ -1617,8 +1617,8 @@ dd {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgb(240 75 35 / 58%) 20%,
-    rgb(240 75 35 / 18%) 78%,
+    rgb(254 92 4 / 58%) 20%,
+    rgb(254 92 4 / 18%) 78%,
     transparent 100%
   );
   content: "";
